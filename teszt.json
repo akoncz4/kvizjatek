@@ -4946,9 +4946,409 @@
       "correctAnswer": "Szénhidrogén"
     },
     {
-      "question": "Melyik évben volt az **első magyar írói Nobel-díj** átadása (Kertész Imre)?",
-      "options": [ "1989", "1995", "2002", "2007" ],
-      "correctAnswer": "2002"
+      "question": "Ki volt az a **magyar költő**, akinek a nevéhez köthető a **'Szent Imre himnusz'**?",
+      "options": [ "Vörösmarty Mihály", "Arany János", "Ady Endre", "Babits Mihály" ],
+      "correctAnswer": "Babits Mihály"
+    },
+    {
+      "question": "Mi a neve annak a **geológiai kornak**, amelyben a Földön megjelentek az első dinoszauruszok (kb.)?",
+      "options": [ "Kréta", "Jura", "Triász", "Perm" ],
+      "correctAnswer": "Triász"
+    },
+    {
+      "question": "Ki volt az a **görög mitológiai figura**, aki felégette a Minótauroszt a labirintusban?",
+      "options": [ "Héraklész", "Odüsszeusz", "Thészeusz", "Perszeusz" ],
+      "correctAnswer": "Thészeusz"
+    },
+    {
+      "question": "Melyik sportágban használnak **'hat trick'** (három gól egy játékos által) kifejezést?",
+      "options": [ "Kosárlabda", "Amerikai futball", "Labdarúgás", "Baseball" ],
+      "correctAnswer": "Labdarúgás"
+    },
+    {
+      "question": "Mi a neve annak a **kémiai vegyületnek**, amely a kávéban található és stimuláló hatású?",
+      "options": [ "Teofillin", "Taurin", "Koffein", "Nikotin" ],
+      "correctAnswer": "Koffein"
+    },
+    {
+      "question": "Melyik évben történt a **náci Németország** kapitulációja a II. világháborúban?",
+      "options": [ "1943", "1944", "1945", "1946" ],
+      "correctAnswer": "1945"
+    },
+    {
+      "question": "Ki volt az a **magyar költő**, akinek a nevéhez köthető a **'Toldi'** (trilógia) című eposz?",
+      "options": [ "Petőfi Sándor", "Arany János", "Vörösmarty Mihály", "Ady Endre" ],
+      "correctAnswer": "Arany János"
+    },
+    {
+      "question": "Mi a neve annak a **fizikai jelenségnek**, amikor egy test a saját tengelye körül forog?",
+      "options": [ "Rotáció", "Transzláció", "Vibráció", "Oszcilláció" ],
+      "correctAnswer": "Rotáció"
+    },
+    {
+      "question": "Melyik **görög filozófus** volt Platón tanítványa, és az empirikus megfigyelés híve?",
+      "options": [ "Szókratész", "Platón", "Arisztotelész", "Démokritosz" ],
+      "correctAnswer": "Arisztotelész"
+    },
+    {
+      "question": "Mi a neve annak a **meteorológiai jelenségnek**, amely során a meleg, nedves levegő hirtelen emelkedik, és jégesőt okoz?",
+      "options": [ "Inverzió", "Szublimáció", "Konvekció", "Front" ],
+      "correctAnswer": "Konvekció"
+    },
+    {
+      "question": "Melyik évben volt a **magyarországi 1956-os forradalom** leverése?",
+      "options": [ "1955", "1956", "1957", "1958" ],
+      "correctAnswer": "1956"
+    },
+    {
+      "question": "Ki volt az a **magyar festő**, aki a **'Krisztus Pilátus előtt'** című hatalmas méretű festményt készítette?",
+      "options": [ "Szinyei Merse Pál", "Munkácsy Mihály", "Csontváry Kosztka Tivadar", "Rippl-Rónai József" ],
+      "correctAnswer": "Munkácsy Mihály"
+    },
+    {
+      "question": "Mi a neve annak a **csillagászati jelenségnek**, amikor egy égitest áthalad egy másik előtt, és eltakarja azt?",
+      "options": [ "Okklúzió", "Tranzit", "Elszóródás", "Napfogyatkozás" ],
+      "correctAnswer": "Tranzit"
+    },
+    {
+      "question": "Melyik évben kezdődött az **amerikai polgárháború**?",
+      "options": [ "1850", "1861", "1865", "1870" ],
+      "correctAnswer": "1861"
+    },
+    {
+      "question": "Ki a szerzője a **'Boldog halál'** (L'Étranger) című regénynek?",
+      "options": [ "Jean-Paul Sartre", "Albert Camus", "Simone de Beauvoir", "Franz Kafka" ],
+      "correctAnswer": "Albert Camus"
+    },
+    {
+      "question": "Mi a neve annak a **kémiai vegyületnek**, amely a növények zöld színét adja, és kulcsszerepet játszik a fotoszintézisben?",
+      "options": [ "Hemoglobin", "Klorofill", "Karotin", "Xantofill" ],
+      "correctAnswer": "Klorofill"
+    },
+    {
+      "question": "Melyik **római császár** építtette a Colosseumot?",
+      "options": [ "Augustus", "Nero", "Vespasianus", "Titus" ],
+      "correctAnswer": "Vespasianus"
+    },
+    {
+      "question": "Mi a neve annak a **geológiai kornak**, amelyben a dinoszauruszok uralkodtak (az utolsó)?",
+      "options": [ "Triász", "Jura", "Kréta", "Perm" ],
+      "correctAnswer": "Kréta"
+    },
+    {
+      "question": "Ki volt az a **magyar költő**, akinek a nevéhez köthető a **'Tűz és jég'** (Hűvösvölgyi rózsák) című vers?",
+      "options": [ "Tóth Árpád", "Juhász Gyula", "Ady Endre", "Kosztolányi Dezső" ],
+      "correctAnswer": "Ady Endre"
+    },
+    {
+      "question": "Mi a neve annak a **fizikai jelenségnek**, amikor egy hanghullám akadályba ütközve elhajlik (pl. sarkon túlra jut)?",
+      "options": [ "Interferencia", "Diffrakció", "Rezonancia", "Refrakció" ],
+      "correctAnswer": "Diffrakció"
+    },
+    {
+      "question": "Melyik sportágban használnak **'hat trick'** (három gól egy játékos által) kifejezést?",
+      "options": [ "Kosárlabda", "Amerikai futball", "Labdarúgás", "Baseball" ],
+      "correctAnswer": "Labdarúgás"
+    },
+    {
+      "question": "Melyik évben volt a **török hódítás** Magyarországon (Mohácsi csata)?",
+      "options": [ "1490", "1526", "1541", "1566" ],
+      "correctAnswer": "1526"
+    },
+    {
+      "question": "Ki volt az a **magyar feltaláló**, akinek a nevéhez köthető a **golyóstoll** (Bíró-féle toll) feltalálása?",
+      "options": [ "Jedlik Ányos", "Bíró László József", "Neumann János", "Puskás Tivadar" ],
+      "correctAnswer": "Bíró László József"
+    },
+    {
+      "question": "Mi a neve annak a **filozófiai irányzatnak**, amely a szépség és a művészet természetét vizsgálja?",
+      "options": [ "Etika", "Metafizika", "Esztétika", "Logika" ],
+      "correctAnswer": "Esztétika"
+    },
+    {
+      "question": "Melyik a legnagyobb **vízesés** a világon (szélesség és átfolyás szerint)?",
+      "options": [ "Niagara-vízesés", "Victoria-vízesés", "Angel-vízesés", "Inga-vízesés (Kongó)" ],
+      "correctAnswer": "Inga-vízesés (Kongó)"
+    },
+    {
+      "question": "Ki a szerzője az **'Anna Karenina'** című orosz regénynek?",
+      "options": [ "Fjodor Dosztojevszkij", "Ivan Turgenyev", "Lev Tolsztoj", "Anton Csehov" ],
+      "correctAnswer": "Lev Tolsztoj"
+    },
+    {
+      "question": "Melyik évben volt az **első világháború** lezárása (fegyverszünet)?",
+      "options": [ "1917", "1918", "1919", "1920" ],
+      "correctAnswer": "1918"
+    },
+    {
+      "question": "Mi a neve annak a **geológiai kornak**, amelyben az emberi evolúció felgyorsult (előtte)?",
+      "options": [ "Holocén", "Pleisztocén", "Pliocén", "Miocén" ],
+      "correctAnswer": "Pleisztocén"
+    },
+    {
+      "question": "Ki volt az a **görög mitológiai figura**, aki a tűz ajándékát vitte el az istenektől az embereknek?",
+      "options": [ "Zeusz", "Hádész", "Prométheusz", "Apollón" ],
+      "correctAnswer": "Prométheusz"
+    },
+    {
+      "question": "Melyik sportágban használnak **'slam dunk'** (zsákolás) kifejezést?",
+      "options": [ "Labdarúgás", "Vízilabda", "Kosárlabda", "Röplabda" ],
+      "correctAnswer": "Kosárlabda"
+    },
+    {
+      "question": "Mi a neve annak a **kémiai reakciónak**, amely során a sav és a bázis semlegesítik egymást?",
+      "options": [ "Oxidáció", "Redukció", "Neutralizáció", "Szintézis" ],
+      "correctAnswer": "Neutralizáció"
+    },
+    {
+      "question": "Melyik volt az a **magyar király**, aki a **Nándorfehérvári győzelemben** (1456) kulcsszerepet játszott?",
+      "options": [ "Luxemburgi Zsigmond", "Hunyadi János", "Mátyás király", "I. Lajos" ],
+      "correctAnswer": "Hunyadi János"
+    },
+    {
+      "question": "Mi a neve annak a **fizikai jelenségnek**, amikor egy test hirtelen meginduláskor (gyorsítás) hátrafele dől?",
+      "options": [ "Rezonancia", "Súrlódás", "Tehetetlenség (inerciája)", "Centrifugális erő" ],
+      "correctAnswer": "Tehetetlenség (inerciája)"
+    },
+    {
+      "question": "Melyik a legnagyobb **tenger** a Földön (terület szerint)?",
+      "options": [ "Fekete-tenger", "Földközi-tenger", "Dél-kínai-tenger", "Karib-tenger" ],
+      "correctAnswer": "Dél-kínai-tenger"
+    },
+    {
+      "question": "Ki a szerzője az **'Édes Anna'** című magyar regénynek?",
+      "options": [ "Móricz Zsigmond", "Kosztolányi Dezső", "Tóth Árpád", "Babits Mihály" ],
+      "correctAnswer": "Kosztolányi Dezső"
+    },
+    {
+      "question": "Melyik évben volt a **magyarországi török uralom** vége (Buda visszafoglalása)?",
+      "options": [ "1526", "1686", "1711", "1740" ],
+      "correctAnswer": "1686"
+    },
+    {
+      "question": "Mi a neve annak a **sejtorganellumnak**, amely a fehérjék szintéziséért felelős?",
+      "options": [ "Mitokondrium", "Riboszóma", "Lizoszóma", "Vákuólum" ],
+      "correctAnswer": "Riboszóma"
+    },
+    {
+      "question": "Ki volt az a magyar tudós, akinek a nevéhez köthető a **dinamó** (elektromos generátor) feltalálása?",
+      "options": [ "Jedlik Ányos", "Puskás Tivadar", "Neumann János", "Gábor Dénes" ],
+      "correctAnswer": "Jedlik Ányos"
+    },
+    {
+      "question": "Melyik volt az a **görög filozófus**, aki a **tudás korlátoltságáról** és a bizonytalanságról beszélt (szkepticizmus)?",
+      "options": [ "Platón", "Arisztotelész", "Szókratész", "Démokritosz" ],
+      "correctAnswer": "Szókratész"
+    },
+    {
+      "question": "Mi a neve annak a **meteorológiai jelenségnek**, amikor a levegő hőmérséklete a magassággal növekszik ahelyett, hogy csökkenne?",
+      "options": [ "Front", "Konvekció", "Inverzió", "Advekció" ],
+      "correctAnswer": "Inverzió"
+    },
+    {
+      "question": "Melyik évben volt az **első emberes űrutazás** (Jurij Gagarin)?",
+      "options": [ "1957", "1961", "1965", "1969" ],
+      "correctAnswer": "1961"
+    },
+    {
+      "question": "Ki volt az a **magyar festő**, aki a **'Rózsaszín hölgyek'** sorozatot festette (nagybányai iskola)?",
+      "options": [ "Munkácsy Mihály", "Szinyei Merse Pál", "Csontváry Kosztka Tivadar", "Rippl-Rónai József" ],
+      "correctAnswer": "Rippl-Rónai József"
+    },
+    {
+      "question": "Mi a neve annak a **csillagászati jelenségnek**, amikor egy égitest hirtelen fényességét növeli (rövid ideig tartó robbanás)?",
+      "options": [ "Kvazár", "Pulzár", "Szupernóva", "Változócsillag" ],
+      "correctAnswer": "Szupernóva"
+    },
+    {
+      "question": "Melyik sportágban használnak **'penalty stroke'** (büntetődobás) kifejezést?",
+      "options": [ "Labdarúgás", "Jégkorong", "Vízilabda", "Rögbi" ],
+      "correctAnswer": "Vízilabda"
+    },
+    {
+      "question": "Ki a szerzője a **'Fekete város'** című magyar regénynek?",
+      "options": [ "Jókai Mór", "Mikszáth Kálmán", "Móricz Zsigmond", "Gárdonyi Géza" ],
+      "correctAnswer": "Mikszáth Kálmán"
+    },
+    {
+      "question": "Mi a neve annak a **kémiai vegyületnek**, amely a fehérjék és nukleinsavak nitrogéntartalmú alkotóeleme?",
+      "options": [ "Szénhidrát", "Aminosav", "Lipid", "Nukleotid" ],
+      "correctAnswer": "Nukleotid"
+    },
+    {
+      "question": "Melyik **görög filozófus** alapította az **Akadémiát** Athénban?",
+      "options": [ "Szókratész", "Platón", "Arisztotelész", "Démokritosz" ],
+      "correctAnswer": "Platón"
+    },
+    {
+      "question": "Mi a neve annak a **geológiai kornak**, amelyben a dinoszauruszok kihaltak?",
+      "options": [ "Jura", "Kréta", "Triász", "Paleogén" ],
+      "correctAnswer": "Kréta"
+    },
+    {
+      "question": "Ki volt az a **magyar festő**, akinek a nevéhez köthető a **'Kék madár'** című mű?",
+      "options": [ "Szinyei Merse Pál", "Csontváry Kosztka Tivadar", "Munkácsy Mihály", "Rippl-Rónai József" ],
+      "correctAnswer": "Csontváry Kosztka Tivadar"
+    },
+    {
+      "question": "Mi a neve annak a **fizikai jelenségnek**, amikor egy test az egyensúlyi helyzetéből kitérítve elkezd oda-vissza mozogni?",
+      "options": [ "Rotáció", "Transzláció", "Vibráció (rezgés)", "Rezonancia" ],
+      "correctAnswer": "Vibráció (rezgés)"
+    },
+    {
+      "question": "Melyik évben volt a **római birodalom** végleges bukása (Nyugat-római birodalom)?",
+      "options": [ "395", "476", "1453", "1492" ],
+      "correctAnswer": "476"
+    },
+    {
+      "question": "Ki volt az a **magyar költő**, akinek a nevéhez köthető a **'Nemzeti dal'**?",
+      "options": [ "Vörösmarty Mihály", "Arany János", "Petőfi Sándor", "Ady Endre" ],
+      "correctAnswer": "Petőfi Sándor"
+    },
+    {
+      "question": "Mi a neve annak a **geológiai lemeznek**, amelyen Európa és Ázsia nagy része fekszik?",
+      "options": [ "Afrikai lemez", "Eurázsiai lemez", "Indiai lemez", "Pacifikus lemez" ],
+      "correctAnswer": "Eurázsiai lemez"
+    },
+    {
+      "question": "Melyik sportágban használnak **'love'** (nulla pont) kifejezést?",
+      "options": [ "Kosárlabda", "Labdarúgás", "Tenisz", "Golf" ],
+      "correctAnswer": "Tenisz"
+    },
+    {
+      "question": "Mi a neve annak a **sejtorganellumnak**, amely a sejtekben található anyagok lebontásáért felelős ('hulladékkezelő')?",
+      "options": [ "Mitokondrium", "Riboszóma", "Lizoszóma", "Vákuólum" ],
+      "correctAnswer": "Lizoszóma"
+    },
+    {
+      "question": "Melyik évben volt a **szuezi válság** (Izrael, Anglia, Franciaország támadása Egyiptom ellen)?",
+      "options": [ "1950", "1956", "1962", "1967" ],
+      "correctAnswer": "1956"
+    },
+    {
+      "question": "Ki volt az a **magyar feltaláló**, akinek a nevéhez köthető az **elektromos óra** (szinkronizált órarendszer) feltalálása?",
+      "options": [ "Jedlik Ányos", "Puskás Tivadar", "Bíró László József", "Gábor Dénes" ],
+      "correctAnswer": "Puskás Tivadar"
+    },
+    {
+      "question": "Mi a neve annak a **filozófiai irányzatnak**, amely a **tapasztalati tudás** kizárólagosságát hirdeti?",
+      "options": [ "Racionalizmus", "Idealizmus", "Empirizmus", "Szkepticizmus" ],
+      "correctAnswer": "Empirizmus"
+    },
+    {
+      "question": "Melyik a legnagyobb **csillagászatilag** felfedezett **bolygó** (Naprendszeren kívül)?",
+      "options": [ "Jupiter", "Kepler-16b", "HAT-P-20b", "WASP-17b" ],
+      "correctAnswer": "WASP-17b"
+    },
+    {
+      "question": "Ki a szerzője a **'Goriot apó'** című francia regénynek?",
+      "options": [ "Victor Hugo", "Gustave Flaubert", "Honoré de Balzac", "Émile Zola" ],
+      "correctAnswer": "Honoré de Balzac"
+    },
+    {
+      "question": "Melyik évben volt a **magyarországi 1919-es Tanácsköztársaság** bukása?",
+      "options": [ "1918", "1919", "1920", "1921" ],
+      "correctAnswer": "1919"
+    },
+    {
+      "question": "Mi a neve annak a **fizikai jelenségnek**, amikor egy test sebessége az idővel állandóan változik (gyorsulás)?",
+      "options": [ "Tehetetlenség", "Súrlódás", "Gyorsulás (akceleráció)", "Impulzus" ],
+      "correctAnswer": "Gyorsulás (akceleráció)"
+    },
+    {
+      "question": "Melyik **görög filozófus** volt Szókratész tanítója, és az *ideák* (eszmék) elméletét alkotta meg?",
+      "options": [ "Arisztotelész", "Xenophón", "Platón", "Démokritosz" ],
+      "correctAnswer": "Platón"
+    },
+    {
+      "question": "Mi a neve annak a **meteorológiai jelenségnek**, amely során a szél a hideg levegőt a meleg levegő alá tolja (hidegfront)?",
+      "options": [ "Konvekció", "Advekció", "Inverzió", "Szublimáció" ],
+      "correctAnswer": "Advekció"
+    },
+    {
+      "question": "Melyik évben volt a **magyarországi ipari forradalom** kezdete (kb.)?",
+      "options": [ "1750", "1840", "1867", "1900" ],
+      "correctAnswer": "1840"
+    },
+    {
+      "question": "Ki volt az a **magyar festő**, aki a **'Lovasok a tóparton'** című képet festette (impresszionista stílus)?",
+      "options": [ "Munkácsy Mihály", "Szinyei Merse Pál", "Csontváry Kosztka Tivadar", "Rippl-Rónai József" ],
+      "correctAnswer": "Szinyei Merse Pál"
+    },
+    {
+      "question": "Mi a neve annak a **kémiai vegyületnek**, amely a fehérjék és a nukleinsavak nitrogéntartalmú alkotóeleme?",
+      "options": [ "Szénhidrát", "Aminosav", "Lipid", "Nukleotid" ],
+      "correctAnswer": "Nukleotid"
+    },
+    {
+      "question": "Melyik évben volt az **első írásos emlék** a **magyar nyelvű** verses költészetről (Ómagyar Mária-siralom)?",
+      "options": [ "1100", "1200", "1300", "1400" ],
+      "correctAnswer": "1300"
+    },
+    {
+      "question": "Ki volt az a **görög mitológiai figura**, aki felégette a Minótauroszt a labirintusban?",
+      "options": [ "Héraklész", "Odüsszeusz", "Thészeusz", "Perszeusz" ],
+      "correctAnswer": "Thészeusz"
+    },
+    {
+      "question": "Melyik sportágban használnak **'balk'** (szabálytalan mozdulat) kifejezést?",
+      "options": [ "Kosárlabda", "Labdarúgás", "Baseball", "Krikett" ],
+      "correctAnswer": "Baseball"
+    },
+    {
+      "question": "Mi a neve annak a **geológiai kornak**, amelyben a ma élő emlősök fejlődtek ki (kb.)?",
+      "options": [ "Triász", "Jura", "Kréta", "Paleogén" ],
+      "correctAnswer": "Paleogén"
+    },
+    {
+      "question": "Ki a szerzője a **'János vitéz'** című verses mesének?",
+      "options": [ "Vörösmarty Mihály", "Arany János", "Petőfi Sándor", "Ady Endre" ],
+      "correctAnswer": "Petőfi Sándor"
+    },
+    {
+      "question": "Mi a neve annak a **fizikai jelenségnek**, amely során egy test rezgési frekvenciája megegyezik a külső erő frekvenciájával?",
+      "options": [ "Vibráció", "Interferencia", "Rezonancia", "Diffrakció" ],
+      "correctAnswer": "Rezonancia"
+    },
+    {
+      "question": "Melyik évben volt a **bécsi békekötés**, amely lezárta a török háborúkat (török kiűzése után)?",
+      "options": [ "1686", "1699", "1711", "1740" ],
+      "correctAnswer": "1699"
+    },
+    {
+      "question": "Mi a neve annak a **csillagászati jelenségnek**, amikor egy égitest a tömegvonzás hatására elmozdul (pl. bolygók elmozdulása)?",
+      "options": [ "Periódus", "Precesszió", "Nutáció", "Perturbáció" ],
+      "correctAnswer": "Perturbáció"
+    },
+    {
+      "question": "Ki volt az a **magyar tudós**, akinek a nevéhez köthető az **elektromos távíró** (telefon) feltalálása?",
+      "options": [ "Jedlik Ányos", "Puskás Tivadar", "Bíró László József", "Gábor Dénes" ],
+      "correctAnswer": "Puskás Tivadar"
+    },
+    {
+      "question": "Melyik volt az a **görög filozófus**, aki a **'dialektika'** (párbeszéd) módszerét használta a tudás megszerzésére?",
+      "options": [ "Platón", "Arisztotelész", "Szókratész", "Démokritosz" ],
+      "correctAnswer": "Szókratész"
+    },
+    {
+      "question": "Mi a neve annak a **meteorológiai jelenségnek**, amely során a meleg, nedves levegő hirtelen emelkedik, és felhőket képez (konvekció)?",
+      "options": [ "Inverzió", "Advekció", "Konvekció", "Szublimáció" ],
+      "correctAnswer": "Konvekció"
+    },
+    {
+      "question": "Melyik évben volt a **magyarországi zsidó emancipáció** (egyenjogúsítás)?",
+      "options": [ "1848", "1867", "1895", "1910" ],
+      "correctAnswer": "1867"
+    },
+    {
+      "question": "Ki volt az a **magyar festő**, aki a **'Tánc'** című képet festette (szecesszió)?",
+      "options": [ "Szinyei Merse Pál", "Csontváry Kosztka Tivadar", "Munkácsy Mihály", "Rippl-Rónai József" ],
+      "correctAnswer": "Rippl-Rónai József"
+    },
+    {
+      "question": "Mi a neve annak a **kémiai vegyületnek**, amely a kőolaj és a földgáz alapvető alkotóeleme?",
+      "options": [ "Szénhidrát", "Aminosav", "Hidrogén-szulfid", "Szénhidrogén" ],
+      "correctAnswer": "Szénhidrogén"
     },
     {
       "question": "Ki volt az a **magyar költő**, akinek a nevéhez köthető a **'Szent Imre himnusz'**?",
@@ -5176,11 +5576,6 @@
       "correctAnswer": "Mikszáth Kálmán"
     },
     {
-      "question": "Melyik évben volt az **első magyar írói Nobel-díj** átadása (Kertész Imre)?",
-      "options": [ "1989", "1995", "2002", "2007" ],
-      "correctAnswer": "2002"
-    },
-    {
       "question": "Mi a neve annak a **kémiai vegyületnek**, amely a fehérjék és nukleinsavak nitrogéntartalmú alkotóeleme?",
       "options": [ "Szénhidrát", "Aminosav", "Lipid", "Nukleotid" ],
       "correctAnswer": "Nukleotid"
@@ -5359,11 +5754,6 @@
       "question": "Mi a neve annak a **kémiai vegyületnek**, amely a kőolaj és a földgáz alapvető alkotóeleme?",
       "options": [ "Szénhidrát", "Aminosav", "Hidrogén-szulfid", "Szénhidrogén" ],
       "correctAnswer": "Szénhidrogén"
-    },
-    {
-      "question": "Melyik évben volt az **első magyar írói Nobel-díj** átadása (Kertész Imre)?",
-      "options": [ "1989", "1995", "2002", "2007" ],
-      "correctAnswer": "2002"
     },
     {
       "question": "Ki volt az a **magyar költő**, akinek a nevéhez köthető a **'Szent Imre himnusz'**?",
@@ -5591,11 +5981,6 @@
       "correctAnswer": "Mikszáth Kálmán"
     },
     {
-      "question": "Melyik évben volt az **első magyar írói Nobel-díj** átadása (Kertész Imre)?",
-      "options": [ "1989", "1995", "2002", "2007" ],
-      "correctAnswer": "2002"
-    },
-    {
       "question": "Mi a neve annak a **kémiai vegyületnek**, amely a fehérjék és nukleinsavak nitrogéntartalmú alkotóeleme?",
       "options": [ "Szénhidrát", "Aminosav", "Lipid", "Nukleotid" ],
       "correctAnswer": "Nukleotid"
@@ -5774,426 +6159,6 @@
       "question": "Mi a neve annak a **kémiai vegyületnek**, amely a kőolaj és a földgáz alapvető alkotóeleme?",
       "options": [ "Szénhidrát", "Aminosav", "Hidrogén-szulfid", "Szénhidrogén" ],
       "correctAnswer": "Szénhidrogén"
-    },
-    {
-      "question": "Melyik évben volt az **első magyar írói Nobel-díj** átadása (Kertész Imre)?",
-      "options": [ "1989", "1995", "2002", "2007" ],
-      "correctAnswer": "2002"
-    },
-    {
-      "question": "Ki volt az a **magyar költő**, akinek a nevéhez köthető a **'Szent Imre himnusz'**?",
-      "options": [ "Vörösmarty Mihály", "Arany János", "Ady Endre", "Babits Mihály" ],
-      "correctAnswer": "Babits Mihály"
-    },
-    {
-      "question": "Mi a neve annak a **geológiai kornak**, amelyben a Földön megjelentek az első dinoszauruszok (kb.)?",
-      "options": [ "Kréta", "Jura", "Triász", "Perm" ],
-      "correctAnswer": "Triász"
-    },
-    {
-      "question": "Ki volt az a **görög mitológiai figura**, aki felégette a Minótauroszt a labirintusban?",
-      "options": [ "Héraklész", "Odüsszeusz", "Thészeusz", "Perszeusz" ],
-      "correctAnswer": "Thészeusz"
-    },
-    {
-      "question": "Melyik sportágban használnak **'hat trick'** (három gól egy játékos által) kifejezést?",
-      "options": [ "Kosárlabda", "Amerikai futball", "Labdarúgás", "Baseball" ],
-      "correctAnswer": "Labdarúgás"
-    },
-    {
-      "question": "Mi a neve annak a **kémiai vegyületnek**, amely a kávéban található és stimuláló hatású?",
-      "options": [ "Teofillin", "Taurin", "Koffein", "Nikotin" ],
-      "correctAnswer": "Koffein"
-    },
-    {
-      "question": "Melyik évben történt a **náci Németország** kapitulációja a II. világháborúban?",
-      "options": [ "1943", "1944", "1945", "1946" ],
-      "correctAnswer": "1945"
-    },
-    {
-      "question": "Ki volt az a **magyar költő**, akinek a nevéhez köthető a **'Toldi'** (trilógia) című eposz?",
-      "options": [ "Petőfi Sándor", "Arany János", "Vörösmarty Mihály", "Ady Endre" ],
-      "correctAnswer": "Arany János"
-    },
-    {
-      "question": "Mi a neve annak a **fizikai jelenségnek**, amikor egy test a saját tengelye körül forog?",
-      "options": [ "Rotáció", "Transzláció", "Vibráció", "Oszcilláció" ],
-      "correctAnswer": "Rotáció"
-    },
-    {
-      "question": "Melyik **görög filozófus** volt Platón tanítványa, és az empirikus megfigyelés híve?",
-      "options": [ "Szókratész", "Platón", "Arisztotelész", "Démokritosz" ],
-      "correctAnswer": "Arisztotelész"
-    },
-    {
-      "question": "Mi a neve annak a **meteorológiai jelenségnek**, amely során a meleg, nedves levegő hirtelen emelkedik, és jégesőt okoz?",
-      "options": [ "Inverzió", "Szublimáció", "Konvekció", "Front" ],
-      "correctAnswer": "Konvekció"
-    },
-    {
-      "question": "Melyik évben volt a **magyarországi 1956-os forradalom** leverése?",
-      "options": [ "1955", "1956", "1957", "1958" ],
-      "correctAnswer": "1956"
-    },
-    {
-      "question": "Ki volt az a **magyar festő**, aki a **'Krisztus Pilátus előtt'** című hatalmas méretű festményt készítette?",
-      "options": [ "Szinyei Merse Pál", "Munkácsy Mihály", "Csontváry Kosztka Tivadar", "Rippl-Rónai József" ],
-      "correctAnswer": "Munkácsy Mihály"
-    },
-    {
-      "question": "Mi a neve annak a **csillagászati jelenségnek**, amikor egy égitest áthalad egy másik előtt, és eltakarja azt?",
-      "options": [ "Okklúzió", "Tranzit", "Elszóródás", "Napfogyatkozás" ],
-      "correctAnswer": "Tranzit"
-    },
-    {
-      "question": "Melyik évben kezdődött az **amerikai polgárháború**?",
-      "options": [ "1850", "1861", "1865", "1870" ],
-      "correctAnswer": "1861"
-    },
-    {
-      "question": "Ki a szerzője a **'Boldog halál'** (L'Étranger) című regénynek?",
-      "options": [ "Jean-Paul Sartre", "Albert Camus", "Simone de Beauvoir", "Franz Kafka" ],
-      "correctAnswer": "Albert Camus"
-    },
-    {
-      "question": "Mi a neve annak a **kémiai vegyületnek**, amely a növények zöld színét adja, és kulcsszerepet játszik a fotoszintézisben?",
-      "options": [ "Hemoglobin", "Klorofill", "Karotin", "Xantofill" ],
-      "correctAnswer": "Klorofill"
-    },
-    {
-      "question": "Melyik **római császár** építtette a Colosseumot?",
-      "options": [ "Augustus", "Nero", "Vespasianus", "Titus" ],
-      "correctAnswer": "Vespasianus"
-    },
-    {
-      "question": "Mi a neve annak a **geológiai kornak**, amelyben a dinoszauruszok uralkodtak (az utolsó)?",
-      "options": [ "Triász", "Jura", "Kréta", "Perm" ],
-      "correctAnswer": "Kréta"
-    },
-    {
-      "question": "Ki volt az a **magyar költő**, akinek a nevéhez köthető a **'Tűz és jég'** (Hűvösvölgyi rózsák) című vers?",
-      "options": [ "Tóth Árpád", "Juhász Gyula", "Ady Endre", "Kosztolányi Dezső" ],
-      "correctAnswer": "Ady Endre"
-    },
-    {
-      "question": "Mi a neve annak a **fizikai jelenségnek**, amikor egy hanghullám akadályba ütközve elhajlik (pl. sarkon túlra jut)?",
-      "options": [ "Interferencia", "Diffrakció", "Rezonancia", "Refrakció" ],
-      "correctAnswer": "Diffrakció"
-    },
-    {
-      "question": "Melyik sportágban használnak **'hat trick'** (három gól egy játékos által) kifejezést?",
-      "options": [ "Kosárlabda", "Amerikai futball", "Labdarúgás", "Baseball" ],
-      "correctAnswer": "Labdarúgás"
-    },
-    {
-      "question": "Melyik évben volt a **török hódítás** Magyarországon (Mohácsi csata)?",
-      "options": [ "1490", "1526", "1541", "1566" ],
-      "correctAnswer": "1526"
-    },
-    {
-      "question": "Ki volt az a **magyar feltaláló**, akinek a nevéhez köthető a **golyóstoll** (Bíró-féle toll) feltalálása?",
-      "options": [ "Jedlik Ányos", "Bíró László József", "Neumann János", "Puskás Tivadar" ],
-      "correctAnswer": "Bíró László József"
-    },
-    {
-      "question": "Mi a neve annak a **filozófiai irányzatnak**, amely a szépség és a művészet természetét vizsgálja?",
-      "options": [ "Etika", "Metafizika", "Esztétika", "Logika" ],
-      "correctAnswer": "Esztétika"
-    },
-    {
-      "question": "Melyik a legnagyobb **vízesés** a világon (szélesség és átfolyás szerint)?",
-      "options": [ "Niagara-vízesés", "Victoria-vízesés", "Angel-vízesés", "Inga-vízesés (Kongó)" ],
-      "correctAnswer": "Inga-vízesés (Kongó)"
-    },
-    {
-      "question": "Ki a szerzője az **'Anna Karenina'** című orosz regénynek?",
-      "options": [ "Fjodor Dosztojevszkij", "Ivan Turgenyev", "Lev Tolsztoj", "Anton Csehov" ],
-      "correctAnswer": "Lev Tolsztoj"
-    },
-    {
-      "question": "Melyik évben volt az **első világháború** lezárása (fegyverszünet)?",
-      "options": [ "1917", "1918", "1919", "1920" ],
-      "correctAnswer": "1918"
-    },
-    {
-      "question": "Mi a neve annak a **geológiai kornak**, amelyben az emberi evolúció felgyorsult (előtte)?",
-      "options": [ "Holocén", "Pleisztocén", "Pliocén", "Miocén" ],
-      "correctAnswer": "Pleisztocén"
-    },
-    {
-      "question": "Ki volt az a **görög mitológiai figura**, aki a tűz ajándékát vitte el az istenektől az embereknek?",
-      "options": [ "Zeusz", "Hádész", "Prométheusz", "Apollón" ],
-      "correctAnswer": "Prométheusz"
-    },
-    {
-      "question": "Melyik sportágban használnak **'slam dunk'** (zsákolás) kifejezést?",
-      "options": [ "Labdarúgás", "Vízilabda", "Kosárlabda", "Röplabda" ],
-      "correctAnswer": "Kosárlabda"
-    },
-    {
-      "question": "Mi a neve annak a **kémiai reakciónak**, amely során a sav és a bázis semlegesítik egymást?",
-      "options": [ "Oxidáció", "Redukció", "Neutralizáció", "Szintézis" ],
-      "correctAnswer": "Neutralizáció"
-    },
-    {
-      "question": "Melyik volt az a **magyar király**, aki a **Nándorfehérvári győzelemben** (1456) kulcsszerepet játszott?",
-      "options": [ "Luxemburgi Zsigmond", "Hunyadi János", "Mátyás király", "I. Lajos" ],
-      "correctAnswer": "Hunyadi János"
-    },
-    {
-      "question": "Mi a neve annak a **fizikai jelenségnek**, amikor egy test hirtelen meginduláskor (gyorsítás) hátrafele dől?",
-      "options": [ "Rezonancia", "Súrlódás", "Tehetetlenség (inerciája)", "Centrifugális erő" ],
-      "correctAnswer": "Tehetetlenség (inerciája)"
-    },
-    {
-      "question": "Melyik a legnagyobb **tenger** a Földön (terület szerint)?",
-      "options": [ "Fekete-tenger", "Földközi-tenger", "Dél-kínai-tenger", "Karib-tenger" ],
-      "correctAnswer": "Dél-kínai-tenger"
-    },
-    {
-      "question": "Ki a szerzője az **'Édes Anna'** című magyar regénynek?",
-      "options": [ "Móricz Zsigmond", "Kosztolányi Dezső", "Tóth Árpád", "Babits Mihály" ],
-      "correctAnswer": "Kosztolányi Dezső"
-    },
-    {
-      "question": "Melyik évben volt a **magyarországi török uralom** vége (Buda visszafoglalása)?",
-      "options": [ "1526", "1686", "1711", "1740" ],
-      "correctAnswer": "1686"
-    },
-    {
-      "question": "Mi a neve annak a **sejtorganellumnak**, amely a fehérjék szintéziséért felelős?",
-      "options": [ "Mitokondrium", "Riboszóma", "Lizoszóma", "Vákuólum" ],
-      "correctAnswer": "Riboszóma"
-    },
-    {
-      "question": "Ki volt az a magyar tudós, akinek a nevéhez köthető a **dinamó** (elektromos generátor) feltalálása?",
-      "options": [ "Jedlik Ányos", "Puskás Tivadar", "Neumann János", "Gábor Dénes" ],
-      "correctAnswer": "Jedlik Ányos"
-    },
-    {
-      "question": "Melyik volt az a **görög filozófus**, aki a **tudás korlátoltságáról** és a bizonytalanságról beszélt (szkepticizmus)?",
-      "options": [ "Platón", "Arisztotelész", "Szókratész", "Démokritosz" ],
-      "correctAnswer": "Szókratész"
-    },
-    {
-      "question": "Mi a neve annak a **meteorológiai jelenségnek**, amikor a levegő hőmérséklete a magassággal növekszik ahelyett, hogy csökkenne?",
-      "options": [ "Front", "Konvekció", "Inverzió", "Advekció" ],
-      "correctAnswer": "Inverzió"
-    },
-    {
-      "question": "Melyik évben volt az **első emberes űrutazás** (Jurij Gagarin)?",
-      "options": [ "1957", "1961", "1965", "1969" ],
-      "correctAnswer": "1961"
-    },
-    {
-      "question": "Ki volt az a **magyar festő**, aki a **'Rózsaszín hölgyek'** sorozatot festette (nagybányai iskola)?",
-      "options": [ "Munkácsy Mihály", "Szinyei Merse Pál", "Csontváry Kosztka Tivadar", "Rippl-Rónai József" ],
-      "correctAnswer": "Rippl-Rónai József"
-    },
-    {
-      "question": "Mi a neve annak a **csillagászati jelenségnek**, amikor egy égitest hirtelen fényességét növeli (rövid ideig tartó robbanás)?",
-      "options": [ "Kvazár", "Pulzár", "Szupernóva", "Változócsillag" ],
-      "correctAnswer": "Szupernóva"
-    },
-    {
-      "question": "Melyik sportágban használnak **'penalty stroke'** (büntetődobás) kifejezést?",
-      "options": [ "Labdarúgás", "Jégkorong", "Vízilabda", "Rögbi" ],
-      "correctAnswer": "Vízilabda"
-    },
-    {
-      "question": "Ki a szerzője a **'Fekete város'** című magyar regénynek?",
-      "options": [ "Jókai Mór", "Mikszáth Kálmán", "Móricz Zsigmond", "Gárdonyi Géza" ],
-      "correctAnswer": "Mikszáth Kálmán"
-    },
-    {
-      "question": "Melyik évben volt az **első magyar írói Nobel-díj** átadása (Kertész Imre)?",
-      "options": [ "1989", "1995", "2002", "2007" ],
-      "correctAnswer": "2002"
-    },
-    {
-      "question": "Mi a neve annak a **kémiai vegyületnek**, amely a fehérjék és nukleinsavak nitrogéntartalmú alkotóeleme?",
-      "options": [ "Szénhidrát", "Aminosav", "Lipid", "Nukleotid" ],
-      "correctAnswer": "Nukleotid"
-    },
-    {
-      "question": "Melyik **görög filozófus** alapította az **Akadémiát** Athénban?",
-      "options": [ "Szókratész", "Platón", "Arisztotelész", "Démokritosz" ],
-      "correctAnswer": "Platón"
-    },
-    {
-      "question": "Mi a neve annak a **geológiai kornak**, amelyben a dinoszauruszok kihaltak?",
-      "options": [ "Jura", "Kréta", "Triász", "Paleogén" ],
-      "correctAnswer": "Kréta"
-    },
-    {
-      "question": "Ki volt az a **magyar festő**, akinek a nevéhez köthető a **'Kék madár'** című mű?",
-      "options": [ "Szinyei Merse Pál", "Csontváry Kosztka Tivadar", "Munkácsy Mihály", "Rippl-Rónai József" ],
-      "correctAnswer": "Csontváry Kosztka Tivadar"
-    },
-    {
-      "question": "Mi a neve annak a **fizikai jelenségnek**, amikor egy test az egyensúlyi helyzetéből kitérítve elkezd oda-vissza mozogni?",
-      "options": [ "Rotáció", "Transzláció", "Vibráció (rezgés)", "Rezonancia" ],
-      "correctAnswer": "Vibráció (rezgés)"
-    },
-    {
-      "question": "Melyik évben volt a **római birodalom** végleges bukása (Nyugat-római birodalom)?",
-      "options": [ "395", "476", "1453", "1492" ],
-      "correctAnswer": "476"
-    },
-    {
-      "question": "Ki volt az a **magyar költő**, akinek a nevéhez köthető a **'Nemzeti dal'**?",
-      "options": [ "Vörösmarty Mihály", "Arany János", "Petőfi Sándor", "Ady Endre" ],
-      "correctAnswer": "Petőfi Sándor"
-    },
-    {
-      "question": "Mi a neve annak a **geológiai lemeznek**, amelyen Európa és Ázsia nagy része fekszik?",
-      "options": [ "Afrikai lemez", "Eurázsiai lemez", "Indiai lemez", "Pacifikus lemez" ],
-      "correctAnswer": "Eurázsiai lemez"
-    },
-    {
-      "question": "Melyik sportágban használnak **'love'** (nulla pont) kifejezést?",
-      "options": [ "Kosárlabda", "Labdarúgás", "Tenisz", "Golf" ],
-      "correctAnswer": "Tenisz"
-    },
-    {
-      "question": "Mi a neve annak a **sejtorganellumnak**, amely a sejtekben található anyagok lebontásáért felelős ('hulladékkezelő')?",
-      "options": [ "Mitokondrium", "Riboszóma", "Lizoszóma", "Vákuólum" ],
-      "correctAnswer": "Lizoszóma"
-    },
-    {
-      "question": "Melyik évben volt a **szuezi válság** (Izrael, Anglia, Franciaország támadása Egyiptom ellen)?",
-      "options": [ "1950", "1956", "1962", "1967" ],
-      "correctAnswer": "1956"
-    },
-    {
-      "question": "Ki volt az a **magyar feltaláló**, akinek a nevéhez köthető az **elektromos óra** (szinkronizált órarendszer) feltalálása?",
-      "options": [ "Jedlik Ányos", "Puskás Tivadar", "Bíró László József", "Gábor Dénes" ],
-      "correctAnswer": "Puskás Tivadar"
-    },
-    {
-      "question": "Mi a neve annak a **filozófiai irányzatnak**, amely a **tapasztalati tudás** kizárólagosságát hirdeti?",
-      "options": [ "Racionalizmus", "Idealizmus", "Empirizmus", "Szkepticizmus" ],
-      "correctAnswer": "Empirizmus"
-    },
-    {
-      "question": "Melyik a legnagyobb **csillagászatilag** felfedezett **bolygó** (Naprendszeren kívül)?",
-      "options": [ "Jupiter", "Kepler-16b", "HAT-P-20b", "WASP-17b" ],
-      "correctAnswer": "WASP-17b"
-    },
-    {
-      "question": "Ki a szerzője a **'Goriot apó'** című francia regénynek?",
-      "options": [ "Victor Hugo", "Gustave Flaubert", "Honoré de Balzac", "Émile Zola" ],
-      "correctAnswer": "Honoré de Balzac"
-    },
-    {
-      "question": "Melyik évben volt a **magyarországi 1919-es Tanácsköztársaság** bukása?",
-      "options": [ "1918", "1919", "1920", "1921" ],
-      "correctAnswer": "1919"
-    },
-    {
-      "question": "Mi a neve annak a **fizikai jelenségnek**, amikor egy test sebessége az idővel állandóan változik (gyorsulás)?",
-      "options": [ "Tehetetlenség", "Súrlódás", "Gyorsulás (akceleráció)", "Impulzus" ],
-      "correctAnswer": "Gyorsulás (akceleráció)"
-    },
-    {
-      "question": "Melyik **görög filozófus** volt Szókratész tanítója, és az *ideák* (eszmék) elméletét alkotta meg?",
-      "options": [ "Arisztotelész", "Xenophón", "Platón", "Démokritosz" ],
-      "correctAnswer": "Platón"
-    },
-    {
-      "question": "Mi a neve annak a **meteorológiai jelenségnek**, amely során a szél a hideg levegőt a meleg levegő alá tolja (hidegfront)?",
-      "options": [ "Konvekció", "Advekció", "Inverzió", "Szublimáció" ],
-      "correctAnswer": "Advekció"
-    },
-    {
-      "question": "Melyik évben volt a **magyarországi ipari forradalom** kezdete (kb.)?",
-      "options": [ "1750", "1840", "1867", "1900" ],
-      "correctAnswer": "1840"
-    },
-    {
-      "question": "Ki volt az a **magyar festő**, aki a **'Lovasok a tóparton'** című képet festette (impresszionista stílus)?",
-      "options": [ "Munkácsy Mihály", "Szinyei Merse Pál", "Csontváry Kosztka Tivadar", "Rippl-Rónai József" ],
-      "correctAnswer": "Szinyei Merse Pál"
-    },
-    {
-      "question": "Mi a neve annak a **kémiai vegyületnek**, amely a fehérjék és a nukleinsavak nitrogéntartalmú alkotóeleme?",
-      "options": [ "Szénhidrát", "Aminosav", "Lipid", "Nukleotid" ],
-      "correctAnswer": "Nukleotid"
-    },
-    {
-      "question": "Melyik évben volt az **első írásos emlék** a **magyar nyelvű** verses költészetről (Ómagyar Mária-siralom)?",
-      "options": [ "1100", "1200", "1300", "1400" ],
-      "correctAnswer": "1300"
-    },
-    {
-      "question": "Ki volt az a **görög mitológiai figura**, aki felégette a Minótauroszt a labirintusban?",
-      "options": [ "Héraklész", "Odüsszeusz", "Thészeusz", "Perszeusz" ],
-      "correctAnswer": "Thészeusz"
-    },
-    {
-      "question": "Melyik sportágban használnak **'balk'** (szabálytalan mozdulat) kifejezést?",
-      "options": [ "Kosárlabda", "Labdarúgás", "Baseball", "Krikett" ],
-      "correctAnswer": "Baseball"
-    },
-    {
-      "question": "Mi a neve annak a **geológiai kornak**, amelyben a ma élő emlősök fejlődtek ki (kb.)?",
-      "options": [ "Triász", "Jura", "Kréta", "Paleogén" ],
-      "correctAnswer": "Paleogén"
-    },
-    {
-      "question": "Ki a szerzője a **'János vitéz'** című verses mesének?",
-      "options": [ "Vörösmarty Mihály", "Arany János", "Petőfi Sándor", "Ady Endre" ],
-      "correctAnswer": "Petőfi Sándor"
-    },
-    {
-      "question": "Mi a neve annak a **fizikai jelenségnek**, amely során egy test rezgési frekvenciája megegyezik a külső erő frekvenciájával?",
-      "options": [ "Vibráció", "Interferencia", "Rezonancia", "Diffrakció" ],
-      "correctAnswer": "Rezonancia"
-    },
-    {
-      "question": "Melyik évben volt a **bécsi békekötés**, amely lezárta a török háborúkat (török kiűzése után)?",
-      "options": [ "1686", "1699", "1711", "1740" ],
-      "correctAnswer": "1699"
-    },
-    {
-      "question": "Mi a neve annak a **csillagászati jelenségnek**, amikor egy égitest a tömegvonzás hatására elmozdul (pl. bolygók elmozdulása)?",
-      "options": [ "Periódus", "Precesszió", "Nutáció", "Perturbáció" ],
-      "correctAnswer": "Perturbáció"
-    },
-    {
-      "question": "Ki volt az a **magyar tudós**, akinek a nevéhez köthető az **elektromos távíró** (telefon) feltalálása?",
-      "options": [ "Jedlik Ányos", "Puskás Tivadar", "Bíró László József", "Gábor Dénes" ],
-      "correctAnswer": "Puskás Tivadar"
-    },
-    {
-      "question": "Melyik volt az a **görög filozófus**, aki a **'dialektika'** (párbeszéd) módszerét használta a tudás megszerzésére?",
-      "options": [ "Platón", "Arisztotelész", "Szókratész", "Démokritosz" ],
-      "correctAnswer": "Szókratész"
-    },
-    {
-      "question": "Mi a neve annak a **meteorológiai jelenségnek**, amely során a meleg, nedves levegő hirtelen emelkedik, és felhőket képez (konvekció)?",
-      "options": [ "Inverzió", "Advekció", "Konvekció", "Szublimáció" ],
-      "correctAnswer": "Konvekció"
-    },
-    {
-      "question": "Melyik évben volt a **magyarországi zsidó emancipáció** (egyenjogúsítás)?",
-      "options": [ "1848", "1867", "1895", "1910" ],
-      "correctAnswer": "1867"
-    },
-    {
-      "question": "Ki volt az a **magyar festő**, aki a **'Tánc'** című képet festette (szecesszió)?",
-      "options": [ "Szinyei Merse Pál", "Csontváry Kosztka Tivadar", "Munkácsy Mihály", "Rippl-Rónai József" ],
-      "correctAnswer": "Rippl-Rónai József"
-    },
-    {
-      "question": "Mi a neve annak a **kémiai vegyületnek**, amely a kőolaj és a földgáz alapvető alkotóeleme?",
-      "options": [ "Szénhidrát", "Aminosav", "Hidrogén-szulfid", "Szénhidrogén" ],
-      "correctAnswer": "Szénhidrogén"
-    },
-    {
-      "question": "Melyik évben volt az **első magyar írói Nobel-díj** átadása (Kertész Imre)?",
-      "options": [ "1989", "1995", "2002", "2007" ],
-      "correctAnswer": "2002"
     },
     {
       "question": "Ki volt az a **magyar költő**, akinek a nevéhez köthető a **'Szent Imre himnusz'**?",
