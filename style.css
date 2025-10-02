@@ -354,4 +354,19 @@ button:disabled {
         text-align: center;
         margin-top: 5px;
     }
+
+
+.result-image {
+    max-width: 80%; /* Kisebb képek */
+    height: auto;
+    margin: 20px auto; /* Középre igazítás és térköz */
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    display: block; /* Hogy a margin auto működjön */
+}
+
+.result-image.hidden {
+    display: none;
+}
+
 }

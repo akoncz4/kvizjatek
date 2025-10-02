@@ -17,8 +17,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const correctAnswersCountDisplay = document.getElementById('correct-answers-count');
     const currentQuestionNumberDisplay = document.getElementById('current-question-number');
     const totalQuestionsCountDisplay = document.getElementById('total-questions-count');
-    const lifeDisplay = document.getElementById('life-display'); // Életek kijelzője
-    const backToMenuBtn = document.getElementById('back-to-menu-btn'); // Vissza gomb
+    const lifeDisplay = document.getElementById('life-display'); 
+    const backToMenuBtn = document.getElementById('back-to-menu-btn'); 
 
     const difficultyButtons = document.querySelectorAll('.difficulty-btn');
     const restartButton = document.getElementById('restart-btn');
@@ -27,9 +27,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const phoneBtn = document.getElementById('phone-btn');
     const audienceBtn = document.getElementById('audience-btn');
 
+    // ÚJ: Képelemek lekérdezése
+    const winImage = document.getElementById('win-image');
+    const loseImage = document.getElementById('lose-image');
+
     // --- Játék állapot változók ---
-    const MAX_QUESTIONS = 20; // Új: 20 kérdés limit
-    const STARTING_LIVES = 3; // Új: 3 élet
+    const MAX_QUESTIONS = 20; // 20 kérdés limit
+    const STARTING_LIVES = 3; // 3 élet
     let allQuestions = {}; 
     let currentQuestions = []; 
     let currentQuestionIndex = 0;
@@ -37,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let correctAnswers = 0;
     let selectedDifficulty = '';
     let isAnswerBlocked = false; 
-    let lives = STARTING_LIVES; // Új: Játékos életei
+    let lives = STARTING_LIVES; 
 
     // Segítő funkciók állapotai (egyszer használatosak)
     let fiftyFiftyUsed = false;
@@ -53,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     restartButton.addEventListener('click', resetGame);
-    backToMenuBtn.addEventListener('click', resetGame); // Új: Vissza a főmenübe
+    backToMenuBtn.addEventListener('click', resetGame); 
     closeModalBtn.addEventListener('click', closeModal);
 
     fiftyFiftyBtn.addEventListener('click', () => {
@@ -75,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Fő funkciók ---
 
     /**
-     * Betölti a kérdéseket a teszt.json fájlból. (A fájl neve az eredeti kódban van)
+     * Betölti a kérdéseket a teszt.json fájlól.
      */
     async function loadQuestions() {
         try {
@@ -138,6 +142,12 @@ document.addEventListener('DOMContentLoaded', () => {
         scoreDisplay.textContent = score;
         totalQuestionsCountDisplay.textContent = currentQuestions.length; // Max 20 lesz
         
+        // ÚJ: Képek elrejtése a játék indításakor
+        winImage.classList.add('hidden');
+        loseImage.classList.add('hidden');
+        winImage.src = ''; // Üresre állítjuk
+        loseImage.src = ''; // Üresre állítjuk
+
         showScreen(quizScreen);
         displayQuestion();
     }
@@ -148,7 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function displayQuestion() {
         // Ellenőrzi, hogy van-e még hátra kérdés, vagy él
         if (currentQuestionIndex >= currentQuestions.length) {
-            endGame(true); // Játék vége - Nyert
+            endGame(true); // Játék vége - Nyert (minden kérdésre válaszolt)
             return;
         }
         if (lives <= 0) {
@@ -201,30 +211,46 @@ document.addEventListener('DOMContentLoaded', () => {
             score += 10;
             correctAnswers++;
         } else {
-            // Új: Helytelen válasz esetén csökkenti az életeket
+            // Helytelen válasz esetén csökkenti az életeket
             lives--;
             updateLifeDisplay();
         }
         scoreDisplay.textContent = score;
 
         setTimeout(() => {
-            currentQuestionIndex++;
-            displayQuestion(); // displayQuestion kezeli a játék végét is
+            // Mielőtt tovább lépnénk, újra ellenőrizzük az életeket és a kérdéseket.
+            if (lives <= 0 || currentQuestionIndex + 1 >= currentQuestions.length) {
+                 endGame(lives > 0); // Játék vége
+            } else {
+                currentQuestionIndex++;
+                displayQuestion(); 
+            }
         }, 1500); 
     }
 
     /**
-     * Befejezi a játékot és megjeleníti az eredményeket.
-     * @param {boolean} hasWon - Igaz, ha minden kérdésre válaszolt, hamis, ha elfogytak az életek.
+     * Befejezi a játékot és megjeleníti az eredményeket, beleértve a képet is.
+     * @param {boolean} hasWon - Igaz, ha minden kérdésre válaszolt és maradt élete, hamis, ha elfogytak az életek.
      */
     function endGame(hasWon) {
         const titleElement = resultScreen.querySelector('h2');
+        
+        // ÚJ: Képek elrejtése minden játék végén
+        winImage.classList.add('hidden');
+        loseImage.classList.add('hidden');
+
         if (lives <= 0) {
-            titleElement.textContent = "Sajnáljuk! Elfogytak az életeid.";
+            titleElement.textContent = "Sajnáljuk! Elfogytak az életeid. Tanár úr csalódott benned!";
+            // ÚJ: Vereség kép megjelenítése
+            loseImage.src = 'lose.png'; // Itt add meg a vesztés kép fájl nevét (pl. lose.png)
+            loseImage.classList.remove('hidden');
         } else if (hasWon) {
-            titleElement.textContent = "Gratulálunk! Befejezted a kvízt!";
+            titleElement.textContent = "Gratulálunk! Tanár úr büszke rád!";
+            // ÚJ: Győzelem kép megjelenítése
+            winImage.src = 'win.png'; // Itt add meg a győzelem kép fájl nevét (pl. win.png)
+            winImage.classList.remove('hidden');
         } else {
-            // Ez a kódág valószínűleg nem fut le, de biztonsági okokból maradhat.
+            // Ez a kódág valószínűleg nem fut le a jelenlegi logikával, de biztonsági okokból maradhat.
             titleElement.textContent = "Játék vége!";
         }
         
@@ -250,7 +276,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /**
-     * Új: Frissíti az életek kijelzőjét (szív ikonokat).
+     * Frissíti az életek kijelzőjét (szív ikonokat).
      */
     function updateLifeDisplay() {
         lifeDisplay.innerHTML = '';
@@ -258,14 +284,14 @@ document.addEventListener('DOMContentLoaded', () => {
             const heartIcon = document.createElement('i');
             heartIcon.classList.add('fas', 'fa-heart');
             if (i >= lives) {
-                heartIcon.classList.add('lost'); // Elvesztett élet
+                heartIcon.classList.add('lost'); // Elvesztett élet szürke
             }
             lifeDisplay.appendChild(heartIcon);
         }
     }
 
 
-    // --- Segítő funkciók (változatlanul hagyva, de a láthatóság és a tiltás továbbra is fontos) ---
+    // --- Segítő funkciók ---
 
     /**
      * 50:50 segítség használata.
@@ -312,7 +338,6 @@ document.addEventListener('DOMContentLoaded', () => {
             tip = `A barátod szerint a helyes válasz valószínűleg: <strong>${question.correctAnswer}</strong>`;
         } else {
             const wrongOptions = question.options.filter(opt => opt !== question.correctAnswer);
-            // Ha már csak 1 helytelen válasz maradt (pl. 50:50 után), akkor azt fogja "tippelni"
             const randomWrong = wrongOptions.length > 0 ? wrongOptions[Math.floor(Math.random() * wrongOptions.length)] : question.correctAnswer;
             tip = `A barátod a <strong>${randomWrong}</strong> választ javasolja, de nem teljesen biztos benne.`;
         }
