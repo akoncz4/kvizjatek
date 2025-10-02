@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
      */
     async function loadQuestions() {
         try {
-            const response = await fetch('questions.json');
+            const response = await fetch('teszt.json');
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
