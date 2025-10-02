@@ -356,21 +356,28 @@ button:disabled {
     }
 
 
-.result-image {
-    max-width: 300px; /* ÚJ: Rögzített maximális szélesség, hogy beleférjen */
-    max-height: 200px; /* ÚJ: Maximális magasság beállítása, hogy ne nyúljon túl nagyra */
-    width: 100%; /* Ez biztosítja, hogy kisebb képernyőn is a rendelkezésre álló helyet használja ki, de max 300px */
+#result-screen .result-image {
+    /* Még kisebb maximális méret a kompaktabb megjelenés érdekében: */
+    max-width: 250px; 
+    max-height: 180px; 
+    
+    width: 100%; /* Ez biztosítja, hogy kisebb képernyőn is a rendelkezésre álló helyet használja ki */
     height: auto; /* Tartja az arányokat, hogy a kép ne torzuljon el */
-    margin: 15px auto; /* Középre igazítás és kisebb térköz */
+    
+    /* Fontos: Skálázza a képet a megadott keretek közé, megőrizve az arányait */
+    object-fit: contain; 
+    
+    margin: 15px auto; 
     border-radius: var(--border-radius);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
     display: block; 
 }
 
-.result-image.hidden {
+#result-screen .result-image.hidden {
     display: none;
 }
 
 
 }
+
 
