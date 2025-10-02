@@ -281,105 +281,99 @@ document.addEventListener('DOMContentLoaded', () => {
         showModal('Telefonos segítség', tip, false); // false, mert nem diagram
     }
 
-    /**
+ /**
      * Közönségszavazás segítség használata.
      * Megjelenít egy szimulált szavazási eredményt.
      */
-    function useAudiencePoll() {
-        if (audienceUsed) return;
-        audienceUsed = true;
-        updateHelpButtonStates();
+ function useAudiencePoll() {
+    if (audienceUsed) return;
+    audienceUsed = true;
+    updateHelpButtonStates();
 
-        const question = currentQuestions[currentQuestionIndex];
-        const results = {};
-        let totalPercentage = 100;
+    const question = currentQuestions[currentQuestionIndex];
+    const results = {};
+    let totalPercentage = 100;
 
-        let correctPercentage = 70; // Alap 70%
-        if (selectedDifficulty === 'easy') correctPercentage = 85;
-        if (selectedDifficulty === 'hard') correctPercentage = 55;
+    let correctPercentage = 70; // Alap 70%
+    if (selectedDifficulty === 'easy') correctChance = 0.9; // Ezek itt rosszul voltak leírva az 'easy' és 'hard'
+    if (selectedDifficulty === 'easy') correctPercentage = 85;
+    if (selectedDifficulty === 'hard') correctPercentage = 55;
 
-        // Ensure correct answer is always one of the visible options after 50:50
-        const visibleOptions = Array.from(answerButtonsElement.children)
-                                    .filter(btn => btn.style.visibility !== 'hidden')
-                                    .map(btn => btn.textContent);
+    // Figyelembe vesszük a látható válaszlehetőségeket (50:50 segítség után)
+    const visibleOptions = Array.from(answerButtonsElement.children)
+                                .filter(btn => btn.style.visibility !== 'hidden' && !btn.disabled) // Fontos, hogy a disabled gombokat is kizárjuk, ha 50:50 letiltott
+                                .map(btn => btn.textContent);
 
-        const availableOptions = question.options.filter(opt => visibleOptions.includes(opt));
-        
-        // Adjust correctPercentage if the correct answer is no longer visible (shouldn't happen with 50:50 logic, but for safety)
-        if (!availableOptions.includes(question.correctAnswer)) {
-            // Ez elméletileg nem fordulhat elő a jelenlegi 50:50 logikával, de biztonsági eset
-            // Ha mégis, akkor osszuk el a százalékot a megmaradt válaszok között
-            console.warn("Helyes válasz nem látható közönségszavazásnál!");
-            correctPercentage = 0; 
+    const availableOptions = question.options.filter(opt => visibleOptions.includes(opt));
+    
+    // Ha a helyes válasz benne van az elérhető opciókban
+    if (availableOptions.includes(question.correctAnswer)) {
+        results[question.correctAnswer] = correctPercentage;
+        totalPercentage -= correctPercentage;
+    } else {
+        // Ha a helyes válasz már nincs az elérhető opciókban (pl. 50:50 kivette)
+        correctPercentage = 0; // Ebben az esetben a helyes válaszra adott százalék 0
+    }
+
+    const wrongOptions = availableOptions.filter(opt => opt !== question.correctAnswer);
+    let remainingOptionsCount = wrongOptions.length;
+
+    // Elosztja a maradék százalékot a rossz válaszok között
+    wrongOptions.forEach((option, index) => {
+        if (index < remainingOptionsCount - 1) {
+            let allocated = Math.floor(Math.random() * (totalPercentage / remainingOptionsCount * 1.5 - 5)) + 5; 
+            allocated = Math.min(allocated, totalPercentage); 
+            results[option] = allocated;
+            totalPercentage -= allocated;
         } else {
-            // Előre meghatározzuk a helyes válasz százalékát
-            results[question.correctAnswer] = correctPercentage;
-            totalPercentage -= correctPercentage;
+            results[option] = Math.max(0, totalPercentage); // Utolsó elem kapja a maradékot, de minimum 0
         }
+    });
 
-
-        const wrongOptions = availableOptions.filter(opt => opt !== question.correctAnswer);
-        let remainingOptionsCount = wrongOptions.length;
-
-        // Elosztja a maradék százalékot a rossz válaszok között
-        wrongOptions.forEach((option, index) => {
-            if (index < remainingOptionsCount - 1) {
-                let allocated = Math.floor(Math.random() * (totalPercentage / remainingOptionsCount * 1.5 - 5)) + 5; 
-                allocated = Math.min(allocated, totalPercentage); 
-                results[option] = allocated;
-                totalPercentage -= allocated;
-            } else {
-                results[option] = Math.max(0, totalPercentage); // Utolsó elem kapja a maradékot, de minimum 0
-            }
-        });
-
-        // Biztosítja, hogy az összesített százalék pontosan 100 legyen (kerekítési hibák miatt)
-        const currentSum = Object.values(results).reduce((a, b) => a + b, 0);
-        if (currentSum !== 100) {
-            // Normalizálás, hogy pontosan 100% legyen az összes látható opció között
-            const adjustmentFactor = 100 / currentSum;
-            for (const key in results) {
-                results[key] = Math.round(results[key] * adjustmentFactor);
-            }
+    // Biztosítja, hogy az összesített százalék pontosan 100 legyen (kerekítési hibák miatt)
+    const currentSum = Object.values(results).reduce((a, b) => a + b, 0);
+    if (currentSum !== 100 && currentSum > 0) { // Csak akkor normalizál, ha a sum nem nulla és nem 100
+        const adjustmentFactor = 100 / currentSum;
+        for (const key in results) {
+            results[key] = Math.round(results[key] * adjustmentFactor);
         }
-        
-        displayAudienceChart(availableOptions, results); // Csak a látható opciókat adja át a diagramnak
-        showModal('Közönségszavazás', '', true); // true jelzi, hogy diagramot kell mutatni
     }
+    
+    // Most itt generáljuk a szöveges kimenetet
+    let pollMessage = "<strong>Közönségszavazás eredménye:</strong><br>";
+    availableOptions.forEach(option => {
+        const percentage = results[option] || 0;
+        pollMessage += `${option}: <strong>${percentage}%</strong><br>`;
+    });
+    
+    showModal('Közönségszavazás', pollMessage, false); // false, mert nem diagram
+}
 
-    /**
-     * Megjeleníti a modális ablakot.
-     * @param {string} title - A modális ablak címe.
-     * @param {string} content - A modális ablak tartalma (szöveg).
-     * @param {boolean} showChart - Igaz, ha a közönségszavazás diagramot is mutatni kell.
-     */
-    function showModal(title, content, showChart = false) {
-        modalTitle.textContent = title;
-        // Reset styles first
-        modalContent.style.display = 'block';
-        audienceChart.style.display = 'none';
-        modalContent.innerHTML = ''; // Törli az előző tartalmat
+/**
+ * Megjeleníti a modális ablakot.
+ * @param {string} title - A modális ablak címe.
+ * @param {string} content - A modális ablak tartalma (szöveg).
+ * @param {boolean} showChart - Igaz, ha a közönségszavazás diagramot is mutatni kell. (Most már mindig false lesz)
+ */
+function showModal(title, content, showChart = false) {
+    modalTitle.textContent = title;
+    // Mindig csak a szöveges tartalmat mutatjuk, a diagramot elrejtjük
+    modalContent.style.display = 'block';
+    audienceChart.style.display = 'none';
+    modalContent.innerHTML = content; // Ezt közvetlenül beállítjuk
+    audienceChart.innerHTML = ''; // Biztos, ami biztos, töröljük a diagram tartalmát
+    
+    overlay.classList.add('active');
+}
 
-        if (showChart) {
-            modalContent.style.display = 'none'; // Rejti a szöveget
-            audienceChart.style.display = 'flex'; // Mutatja a diagramot
-        } else {
-            modalContent.innerHTML = content; // Beállítja a szöveges tartalmat
-            modalContent.style.display = 'block'; // Mutatja a szöveget
-            audienceChart.innerHTML = ''; // Törli a diagramot
-        }
-        
-        overlay.classList.add('active');
-    }
+/**
+ * Bezárja a modális ablakot.
+ */
+function closeModal() {
+    overlay.classList.remove('active');
+}
 
-    /**
-     * Bezárja a modális ablakot.
-     */
-    function closeModal() {
-        overlay.classList.remove('active');
-    }
-
-    /**
+/**
      * Megjeleníti a közönségszavazás diagramot.
      * @param {string[]} options - A kérdés aktuálisan látható válaszlehetőségei.
      * @param {Object.<string, number>} results - A válaszlehetőségekhez tartozó százalékok.
