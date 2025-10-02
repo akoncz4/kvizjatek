@@ -357,8 +357,8 @@ button:disabled {
 
 
 .result-image {
-    max-width: 80%; /* Kisebb képek */
-    height: auto;
+    max-width: 20%; /* Kisebb képek */
+    height: 20%;
     margin: 20px auto; /* Középre igazítás és térköz */
     border-radius: var(--border-radius);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
@@ -368,5 +368,6 @@ button:disabled {
 .result-image.hidden {
     display: none;
 }
+
 
 }
