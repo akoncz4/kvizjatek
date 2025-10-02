@@ -245,11 +245,11 @@ document.addEventListener('DOMContentLoaded', () => {
         let imageFileName;
 
         if (lives <= 0) {
-            titleElement.textContent = "Sajnáljuk! Elfogytak az életeid. Tanár úr csalódott benned!";
+            titleElement.textContent = "Nagyon kikaptál! Tanár úr csalódott benned!";
             imageToDisplay = loseImage;
             imageFileName = 'lose.png';
         } else if (hasWon) {
-            titleElement.textContent = "Gratulálunk! Befejezted a kvízt! Tanár úr büszke rád!";
+            titleElement.textContent = "Gratulálunk! Nagyon megnyerted. Tanár úr büszke rád!";
             imageToDisplay = winImage;
             imageFileName = 'win.png';
         } else {
@@ -479,3 +479,4 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 });
+
