@@ -230,14 +230,15 @@ document.addEventListener('DOMContentLoaded', () => {
         if (fiftyFiftyUsed) return;
         fiftyFiftyUsed = true;
         updateHelpButtonStates();
-        isAnswerBlocked = true; // Ideiglenesen blokkolja a válaszadást, amíg a gombok eltűnnek
+        // isAnswerBlocked = true; // Ezt a sort kivettem, mert nem indokolt blokkolni a válaszadást, csak eltünteti a gombokat.
 
         const question = currentQuestions[currentQuestionIndex];
         const wrongOptions = question.options.filter(opt => opt !== question.correctAnswer);
         
         // Két véletlenszerű helytelen opció kiválasztása
         const optionsToRemove = [];
-        while (optionsToRemove.length < 2 && wrongOptions.length > 0) {
+        // Biztosítja, hogy mindig eltávolítson 2 opciót, ha van legalább 2 helytelen
+        while (optionsToRemove.length < 2 && wrongOptions.length > (2 - optionsToRemove.length)) { 
             const randomIndex = Math.floor(Math.random() * wrongOptions.length);
             optionsToRemove.push(wrongOptions.splice(randomIndex, 1)[0]);
         }
@@ -248,8 +249,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 button.disabled = true; // Le is tiltja
             }
         });
-
-        isAnswerBlocked = false; // Visszaállítja
+        // isAnswerBlocked = false; // Ezt a sort is kivettem
     }
 
     /**
@@ -260,7 +260,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (phoneUsed) return;
         phoneUsed = true;
         updateHelpButtonStates();
-        // isAnswerBlocked = true; // Nem feltétlenül kell blokkolni, csak a pop-up miatt
 
         const question = currentQuestions[currentQuestionIndex];
         let tip = '';
@@ -271,14 +270,15 @@ document.addEventListener('DOMContentLoaded', () => {
         if (selectedDifficulty === 'hard') correctChance = 0.5;
 
         if (randomNumber < correctChance) {
-            tip = `A barátod szerint a helyes válasz valószínűleg: **${question.correctAnswer}**`;
+            tip = `A barátod szerint a helyes válasz valószínűleg: <strong>${question.correctAnswer}</strong>`;
         } else {
             const wrongOptions = question.options.filter(opt => opt !== question.correctAnswer);
-            const randomWrong = wrongOptions[Math.floor(Math.random() * wrongOptions.length)];
-            tip = `A barátod a **${randomWrong}** választ javasolja, de nem teljesen biztos benne.`;
+            // Ha már csak 1 helytelen válasz maradt (pl. 50:50 után), akkor azt fogja "tippelni"
+            const randomWrong = wrongOptions.length > 0 ? wrongOptions[Math.floor(Math.random() * wrongOptions.length)] : question.correctAnswer;
+            tip = `A barátod a <strong>${randomWrong}</strong> választ javasolja, de nem teljesen biztos benne.`;
         }
         
-        showModal('Telefonos segítség', tip);
+        showModal('Telefonos segítség', tip, false); // false, mert nem diagram
     }
 
     /**
@@ -289,7 +289,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (audienceUsed) return;
         audienceUsed = true;
         updateHelpButtonStates();
-        // isAnswerBlocked = true; // Nem feltétlenül kell blokkolni
 
         const question = currentQuestions[currentQuestionIndex];
         const results = {};
@@ -299,33 +298,52 @@ document.addEventListener('DOMContentLoaded', () => {
         if (selectedDifficulty === 'easy') correctPercentage = 85;
         if (selectedDifficulty === 'hard') correctPercentage = 55;
 
-        results[question.correctAnswer] = correctPercentage;
-        totalPercentage -= correctPercentage;
+        // Ensure correct answer is always one of the visible options after 50:50
+        const visibleOptions = Array.from(answerButtonsElement.children)
+                                    .filter(btn => btn.style.visibility !== 'hidden')
+                                    .map(btn => btn.textContent);
 
-        const wrongOptions = question.options.filter(opt => opt !== question.correctAnswer);
-        let remainingOptions = wrongOptions.length;
+        const availableOptions = question.options.filter(opt => visibleOptions.includes(opt));
+        
+        // Adjust correctPercentage if the correct answer is no longer visible (shouldn't happen with 50:50 logic, but for safety)
+        if (!availableOptions.includes(question.correctAnswer)) {
+            // Ez elméletileg nem fordulhat elő a jelenlegi 50:50 logikával, de biztonsági eset
+            // Ha mégis, akkor osszuk el a százalékot a megmaradt válaszok között
+            console.warn("Helyes válasz nem látható közönségszavazásnál!");
+            correctPercentage = 0; 
+        } else {
+            // Előre meghatározzuk a helyes válasz százalékát
+            results[question.correctAnswer] = correctPercentage;
+            totalPercentage -= correctPercentage;
+        }
+
+
+        const wrongOptions = availableOptions.filter(opt => opt !== question.correctAnswer);
+        let remainingOptionsCount = wrongOptions.length;
 
         // Elosztja a maradék százalékot a rossz válaszok között
         wrongOptions.forEach((option, index) => {
-            if (index < remainingOptions - 1) {
-                let allocated = Math.floor(Math.random() * (totalPercentage / remainingOptions * 1.5 - 5)) + 5; 
+            if (index < remainingOptionsCount - 1) {
+                let allocated = Math.floor(Math.random() * (totalPercentage / remainingOptionsCount * 1.5 - 5)) + 5; 
                 allocated = Math.min(allocated, totalPercentage); 
                 results[option] = allocated;
                 totalPercentage -= allocated;
             } else {
-                results[option] = totalPercentage;
+                results[option] = Math.max(0, totalPercentage); // Utolsó elem kapja a maradékot, de minimum 0
             }
         });
 
         // Biztosítja, hogy az összesített százalék pontosan 100 legyen (kerekítési hibák miatt)
-        const sum = Object.values(results).reduce((a, b) => a + b, 0);
-        if (sum !== 100) {
+        const currentSum = Object.values(results).reduce((a, b) => a + b, 0);
+        if (currentSum !== 100) {
+            // Normalizálás, hogy pontosan 100% legyen az összes látható opció között
+            const adjustmentFactor = 100 / currentSum;
             for (const key in results) {
-                results[key] = Math.round(results[key] / sum * 100);
+                results[key] = Math.round(results[key] * adjustmentFactor);
             }
         }
         
-        displayAudienceChart(question.options, results);
+        displayAudienceChart(availableOptions, results); // Csak a látható opciókat adja át a diagramnak
         showModal('Közönségszavazás', '', true); // true jelzi, hogy diagramot kell mutatni
     }
 
@@ -337,15 +355,18 @@ document.addEventListener('DOMContentLoaded', () => {
      */
     function showModal(title, content, showChart = false) {
         modalTitle.textContent = title;
-        modalContent.innerHTML = content;
-        audienceChart.innerHTML = ''; // Törli az előző diagramot
-        
+        // Reset styles first
+        modalContent.style.display = 'block';
+        audienceChart.style.display = 'none';
+        modalContent.innerHTML = ''; // Törli az előző tartalmat
+
         if (showChart) {
-            modalContent.style.display = 'none';
-            audienceChart.style.display = 'flex';
+            modalContent.style.display = 'none'; // Rejti a szöveget
+            audienceChart.style.display = 'flex'; // Mutatja a diagramot
         } else {
-            modalContent.style.display = 'block';
-            audienceChart.style.display = 'none';
+            modalContent.innerHTML = content; // Beállítja a szöveges tartalmat
+            modalContent.style.display = 'block'; // Mutatja a szöveget
+            audienceChart.innerHTML = ''; // Törli a diagramot
         }
         
         overlay.classList.add('active');
@@ -360,7 +381,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /**
      * Megjeleníti a közönségszavazás diagramot.
-     * @param {string[]} options - A kérdés válaszlehetőségei.
+     * @param {string[]} options - A kérdés aktuálisan látható válaszlehetőségei.
      * @param {Object.<string, number>} results - A válaszlehetőségekhez tartozó százalékok.
      */
     function displayAudienceChart(options, results) {
@@ -373,22 +394,23 @@ document.addEventListener('DOMContentLoaded', () => {
             const bar = document.createElement('div');
             bar.classList.add('audience-bar');
             bar.style.height = `${percentage}%`;
-            // bar.textContent = `${percentage}%`; // Lehet, hogy túl sok, ha kicsi a sáv
-
+            
             const percentageSpan = document.createElement('span');
+            percentageSpan.classList.add('audience-bar-percentage');
             percentageSpan.textContent = `${percentage}%`;
-            bar.appendChild(percentageSpan);
+            barContainer.appendChild(percentageSpan); // A konténerbe tesszük, a bar FÖLÉ
 
             const label = document.createElement('div');
             label.classList.add('label');
             label.textContent = option;
 
-            barContainer.appendChild(bar);
+            barContainer.appendChild(bar); // A bar most a percentage span UTÁN jön
             barContainer.appendChild(label);
             audienceChart.appendChild(barContainer);
         });
     }
 
+    // ... (a shuffleArray függvény változatlan)
 
     // --- Segéd függvények ---
 

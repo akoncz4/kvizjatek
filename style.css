@@ -216,22 +216,25 @@ button:disabled {
 .audience-chart {
     display: flex;
     justify-content: space-around;
-    align-items: flex-end;
-    height: 150px;
+    align-items: flex-end; /* A bárok alulról nőjenek */
+    height: 180px; /* Megnövelt magasság a jobb láthatóságért */
     margin-top: 25px;
-    padding-bottom: 10px; /* Hogy elférjen a %-os jelzés */
+    padding-bottom: 5px;
     border-bottom: 2px solid #eee;
     font-size: 0.85em;
     position: relative;
+    gap: 5px; /* Kisebb rés a bárok között */
 }
 
 .audience-bar-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 20%;
-    max-width: 60px;
+    width: 20%; /* 4 oszlop esetén kb. 25% kell, de kisebb padding miatt 20% */
+    max-width: 80px; /* Max szélesség a jobb olvashatóságért */
     text-align: center;
+    height: 100%; /* Hogy a gyermek elemek jól tudjanak pozícionálódni */
+    justify-content: flex-end; /* Hogy a label alulra kerüljön */
 }
 
 .audience-bar {
@@ -241,27 +244,69 @@ button:disabled {
     transition: height 0.5s ease-out;
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    align-items: flex-end; /* Százalék alulra a báron belül */
     color: white;
     font-weight: bold;
-    padding-top: 5px;
     box-sizing: border-box;
-    font-size: 0.8em;
+    position: relative; /* Fontos, hogy a gyermek span pozícionálható legyen hozzá képest */
 }
-.audience-bar span {
-    transform: rotate(-90deg);
-    white-space: nowrap;
+
+.audience-bar-percentage { /* Új osztály a százalék kijelzésére */
     position: absolute;
-    bottom: calc(100% + 5px); /* Bárok felett */
-    left: 50%;
-    transform: translateX(-50%);
-    color: var(--text-color); /* Százalék szín */
+    top: -20px; /* A bár fölé helyezi */
+    font-size: 0.9em;
+    color: var(--text-color); /* Jobban látható szín */
     font-weight: normal;
+    white-space: nowrap;
 }
+
 .audience-bar-container .label {
     margin-top: 5px;
     color: #777;
     word-break: break-word; /* Törje a hosszú szavakat */
+    font-size: 0.8em;
+}
+
+/* Reszponzivitás */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+    }
+    h1 {
+        font-size: 1.8em;
+    }
+    h3 {
+        font-size: 1.3em;
+    }
+    button {
+        padding: 10px 20px;
+        font-size: 0.95em;
+    }
+    .btn-grid {
+        grid-template-columns: 1fr; /* Egyszerű oszlop mobilon */
+    }
+    .help-options {
+        flex-direction: column;
+        gap: 5px; /* Kisebb rés mobil nézetben */
+    }
+    .help-btn {
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+    }
+    .modal {
+        padding: 20px;
+    }
+    .audience-chart {
+        height: 150px; /* Kisebb magasság mobilon */
+    }
+    .audience-bar-percentage {
+        top: -15px; /* Kisebb eltolás mobilon */
+        font-size: 0.8em;
+    }
+    .audience-bar-container .label {
+        font-size: 0.75em;
+    }
 }
 
 /* Reszponzivitás */
