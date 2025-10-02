@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // DOM elemek lekérdezése
+    // --- DOM elemek lekérdezése ---
     const difficultySelectionScreen = document.getElementById('difficulty-selection');
     const quizScreen = document.getElementById('quiz-screen');
     const resultScreen = document.getElementById('result-screen');
@@ -17,6 +17,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const correctAnswersCountDisplay = document.getElementById('correct-answers-count');
     const currentQuestionNumberDisplay = document.getElementById('current-question-number');
     const totalQuestionsCountDisplay = document.getElementById('total-questions-count');
+    const lifeDisplay = document.getElementById('life-display'); // Életek kijelzője
+    const backToMenuBtn = document.getElementById('back-to-menu-btn'); // Vissza gomb
 
     const difficultyButtons = document.querySelectorAll('.difficulty-btn');
     const restartButton = document.getElementById('restart-btn');
@@ -25,14 +27,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const phoneBtn = document.getElementById('phone-btn');
     const audienceBtn = document.getElementById('audience-btn');
 
-    // Játék állapot változók
-    let allQuestions = {}; // Ide töltjük be a JSON kérdéseket
-    let currentQuestions = []; // A kiválasztott nehézség kérdései
+    // --- Játék állapot változók ---
+    const MAX_QUESTIONS = 20; // Új: 20 kérdés limit
+    const STARTING_LIVES = 3; // Új: 3 élet
+    let allQuestions = {}; 
+    let currentQuestions = []; 
     let currentQuestionIndex = 0;
     let score = 0;
     let correctAnswers = 0;
     let selectedDifficulty = '';
-    let isAnswerBlocked = false; // Megakadályozza a többszöri kattintást
+    let isAnswerBlocked = false; 
+    let lives = STARTING_LIVES; // Új: Játékos életei
 
     // Segítő funkciók állapotai (egyszer használatosak)
     let fiftyFiftyUsed = false;
@@ -40,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let audienceUsed = false;
 
     // --- Kezdeti inicializálás ---
-    loadQuestions(); // Betölti a kérdéseket JSON-ből
+    loadQuestions(); 
 
     // Eseményfigyelők
     difficultyButtons.forEach(button => {
@@ -48,6 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     restartButton.addEventListener('click', resetGame);
+    backToMenuBtn.addEventListener('click', resetGame); // Új: Vissza a főmenübe
     closeModalBtn.addEventListener('click', closeModal);
 
     fiftyFiftyBtn.addEventListener('click', () => {
@@ -69,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Fő funkciók ---
 
     /**
-     * Betölti a kérdéseket a questions.json fájlból.
+     * Betölti a kérdéseket a teszt.json fájlból. (A fájl neve az eredeti kódban van)
      */
     async function loadQuestions() {
         try {
@@ -79,26 +85,24 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             allQuestions = await response.json();
             console.log("Kérdések sikeresen betöltve!", allQuestions);
-            // Ha nincsenek kérdések, hibaüzenet
             if (Object.keys(allQuestions).length === 0 || 
                 !allQuestions.easy || !allQuestions.medium || !allQuestions.hard ||
                 allQuestions.easy.length === 0 || allQuestions.medium.length === 0 || allQuestions.hard.length === 0) {
-                document.getElementById('game-title').textContent = "HIBA: Nincsenek kérdések! Kérjük, ellenőrizze a 'questions.json' fájlt.";
-                difficultySelectionScreen.style.display = 'none'; // Rejti a gombokat
+                document.getElementById('game-title').textContent = "HIBA: Nincsenek kérdések! Kérjük, ellenőrizze a 'teszt.json' fájlt.";
+                difficultySelectionScreen.style.display = 'none'; 
                 return;
             }
-            showScreen(difficultySelectionScreen); // Kérdések betöltése után látható a nehézségválasztó
+            showScreen(difficultySelectionScreen); 
         } catch (error) {
             console.error("Hiba a kérdések betöltésekor:", error);
             document.getElementById('game-title').textContent = "Hiba történt a kérdések betöltésekor. Kérjük, ellenőrizze a console-t.";
-            difficultySelectionScreen.style.display = 'none'; // Rejti a gombokat
+            difficultySelectionScreen.style.display = 'none'; 
         }
     }
 
 
     /**
      * Megjelenít egy adott képernyőt, elrejtve a többit.
-     * @param {HTMLElement} screenToShow - Az aktívvá teendő képernyő DOM eleme.
      */
     function showScreen(screenToShow) {
         document.querySelectorAll('.screen').forEach(screen => {
@@ -109,24 +113,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /**
      * Elindítja a játékot a kiválasztott nehézségi szinttel.
-     * @param {string} difficulty - A kiválasztott nehézségi szint ('easy', 'medium', 'hard').
      */
     function startGame(difficulty) {
         selectedDifficulty = difficulty;
-        // Másolatot készít és megkeveri a kérdéseket
-        currentQuestions = shuffleArray([...allQuestions[difficulty]]); 
+        
+        // Összegyűjti és megkeveri az összes elérhető kérdést
+        const availableQuestions = shuffleArray([...allQuestions[difficulty]]); 
+        
+        // Csak az első MAX_QUESTIONS (20) kérdést veszi be.
+        currentQuestions = availableQuestions.slice(0, MAX_QUESTIONS); 
+
         currentQuestionIndex = 0;
         score = 0;
         correctAnswers = 0;
+        lives = STARTING_LIVES; // Életek visszaállítása
         
         // Segítők alaphelyzetbe állítása
         fiftyFiftyUsed = false;
         phoneUsed = false;
         audienceUsed = false;
         updateHelpButtonStates();
+        updateLifeDisplay(); // Életek kijelzőjének frissítése
 
         scoreDisplay.textContent = score;
-        totalQuestionsCountDisplay.textContent = currentQuestions.length;
+        totalQuestionsCountDisplay.textContent = currentQuestions.length; // Max 20 lesz
         
         showScreen(quizScreen);
         displayQuestion();
@@ -136,9 +146,18 @@ document.addEventListener('DOMContentLoaded', () => {
      * Megjeleníti az aktuális kérdést és válaszlehetőségeket.
      */
     function displayQuestion() {
-        isAnswerBlocked = false; // Új kérdésnél engedélyezzük a válaszadást
+        // Ellenőrzi, hogy van-e még hátra kérdés, vagy él
+        if (currentQuestionIndex >= currentQuestions.length) {
+            endGame(true); // Játék vége - Nyert
+            return;
+        }
+        if (lives <= 0) {
+            endGame(false); // Játék vége - Elfogytak az életek
+            return;
+        }
+        
+        isAnswerBlocked = false; 
 
-        // Törli az előző válasz gombokat
         while (answerButtonsElement.firstChild) {
             answerButtonsElement.removeChild(answerButtonsElement.firstChild);
         }
@@ -147,7 +166,6 @@ document.addEventListener('DOMContentLoaded', () => {
         questionText.textContent = question.question;
         currentQuestionNumberDisplay.textContent = currentQuestionIndex + 1;
 
-        // Keveri a válaszlehetőségeket, mielőtt megjeleníti őket
         const shuffledOptions = shuffleArray([...question.options]);
 
         shuffledOptions.forEach(option => {
@@ -161,44 +179,55 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /**
      * Kezeli a felhasználó által kiválasztott választ.
-     * @param {string} selectedOption - A felhasználó által kiválasztott válasz.
      */
     function selectAnswer(selectedOption) {
-        if (isAnswerBlocked) return; // Ha már válaszolt vagy segítség aktív
+        if (isAnswerBlocked) return; 
         isAnswerBlocked = true;
 
         const question = currentQuestions[currentQuestionIndex];
         const isCorrect = selectedOption === question.correctAnswer;
+        const answerButtons = Array.from(answerButtonsElement.children);
 
-        Array.from(answerButtonsElement.children).forEach(button => {
-            button.disabled = true; // Letiltja az összes gombot a válasz után
+        answerButtons.forEach(button => {
+            button.disabled = true; 
             if (button.textContent === question.correctAnswer) {
-                button.classList.add('correct'); // Helyes válasz zöld
+                button.classList.add('correct'); 
             } else if (button.textContent === selectedOption) {
-                button.classList.add('wrong'); // Helytelen válasz piros
+                button.classList.add('wrong'); 
             }
         });
 
         if (isCorrect) {
             score += 10;
             correctAnswers++;
+        } else {
+            // Új: Helytelen válasz esetén csökkenti az életeket
+            lives--;
+            updateLifeDisplay();
         }
         scoreDisplay.textContent = score;
 
         setTimeout(() => {
             currentQuestionIndex++;
-            if (currentQuestionIndex < currentQuestions.length) {
-                displayQuestion();
-            } else {
-                endGame();
-            }
-        }, 1500); // 1.5 másodperc várakozás a következő kérdés előtt
+            displayQuestion(); // displayQuestion kezeli a játék végét is
+        }, 1500); 
     }
 
     /**
      * Befejezi a játékot és megjeleníti az eredményeket.
+     * @param {boolean} hasWon - Igaz, ha minden kérdésre válaszolt, hamis, ha elfogytak az életek.
      */
-    function endGame() {
+    function endGame(hasWon) {
+        const titleElement = resultScreen.querySelector('h2');
+        if (lives <= 0) {
+            titleElement.textContent = "Sajnáljuk! Elfogytak az életeid.";
+        } else if (hasWon) {
+            titleElement.textContent = "Gratulálunk! Befejezted a kvízt!";
+        } else {
+            // Ez a kódág valószínűleg nem fut le, de biztonsági okokból maradhat.
+            titleElement.textContent = "Játék vége!";
+        }
+        
         finalScoreDisplay.textContent = score;
         correctAnswersCountDisplay.textContent = correctAnswers;
         showScreen(resultScreen);
@@ -220,24 +249,36 @@ document.addEventListener('DOMContentLoaded', () => {
         audienceBtn.disabled = audienceUsed;
     }
 
-    // --- Segítő funkciók ---
+    /**
+     * Új: Frissíti az életek kijelzőjét (szív ikonokat).
+     */
+    function updateLifeDisplay() {
+        lifeDisplay.innerHTML = '';
+        for (let i = 0; i < STARTING_LIVES; i++) {
+            const heartIcon = document.createElement('i');
+            heartIcon.classList.add('fas', 'fa-heart');
+            if (i >= lives) {
+                heartIcon.classList.add('lost'); // Elvesztett élet
+            }
+            lifeDisplay.appendChild(heartIcon);
+        }
+    }
+
+
+    // --- Segítő funkciók (változatlanul hagyva, de a láthatóság és a tiltás továbbra is fontos) ---
 
     /**
      * 50:50 segítség használata.
-     * Két helytelen választ eltávolít a válaszlehetőségek közül.
      */
     function useFiftyFifty() {
         if (fiftyFiftyUsed) return;
         fiftyFiftyUsed = true;
         updateHelpButtonStates();
-        // isAnswerBlocked = true; // Ezt a sort kivettem, mert nem indokolt blokkolni a válaszadást, csak eltünteti a gombokat.
 
         const question = currentQuestions[currentQuestionIndex];
         const wrongOptions = question.options.filter(opt => opt !== question.correctAnswer);
         
-        // Két véletlenszerű helytelen opció kiválasztása
         const optionsToRemove = [];
-        // Biztosítja, hogy mindig eltávolítson 2 opciót, ha van legalább 2 helytelen
         while (optionsToRemove.length < 2 && wrongOptions.length > (2 - optionsToRemove.length)) { 
             const randomIndex = Math.floor(Math.random() * wrongOptions.length);
             optionsToRemove.push(wrongOptions.splice(randomIndex, 1)[0]);
@@ -245,16 +286,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
         Array.from(answerButtonsElement.children).forEach(button => {
             if (optionsToRemove.includes(button.textContent)) {
-                button.style.visibility = 'hidden'; // Eltünteti a gombot
-                button.disabled = true; // Le is tiltja
+                button.style.visibility = 'hidden'; 
+                button.disabled = true; 
             }
         });
-        // isAnswerBlocked = false; // Ezt a sort is kivettem
     }
 
     /**
      * Telefonos segítség használata.
-     * Megjelenít egy tippet a helyes válaszra.
      */
     function usePhoneAFriend() {
         if (phoneUsed) return;
@@ -278,115 +317,93 @@ document.addEventListener('DOMContentLoaded', () => {
             tip = `A barátod a <strong>${randomWrong}</strong> választ javasolja, de nem teljesen biztos benne.`;
         }
         
-        showModal('Telefonos segítség', tip, false); // false, mert nem diagram
+        showModal('Telefonos segítség', tip, false); 
     }
 
- /**
+    /**
      * Közönségszavazás segítség használata.
-     * Megjelenít egy szimulált szavazási eredményt.
      */
- function useAudiencePoll() {
-    if (audienceUsed) return;
-    audienceUsed = true;
-    updateHelpButtonStates();
+    function useAudiencePoll() {
+        if (audienceUsed) return;
+        audienceUsed = true;
+        updateHelpButtonStates();
 
-    const question = currentQuestions[currentQuestionIndex];
-    const results = {};
-    let totalPercentage = 100;
+        const question = currentQuestions[currentQuestionIndex];
+        const results = {};
+        let totalPercentage = 100;
 
-    let correctPercentage = 70; // Alap 70%
-    if (selectedDifficulty === 'easy') correctChance = 0.9; // Ezek itt rosszul voltak leírva az 'easy' és 'hard'
-    if (selectedDifficulty === 'easy') correctPercentage = 85;
-    if (selectedDifficulty === 'hard') correctPercentage = 55;
+        let correctPercentage = 70; 
+        if (selectedDifficulty === 'easy') correctPercentage = 85;
+        if (selectedDifficulty === 'hard') correctPercentage = 55;
 
-    // Figyelembe vesszük a látható válaszlehetőségeket (50:50 segítség után)
-    const visibleOptions = Array.from(answerButtonsElement.children)
-                                .filter(btn => btn.style.visibility !== 'hidden' && !btn.disabled) // Fontos, hogy a disabled gombokat is kizárjuk, ha 50:50 letiltott
-                                .map(btn => btn.textContent);
+        const visibleOptions = Array.from(answerButtonsElement.children)
+                                    .filter(btn => btn.style.visibility !== 'hidden' && !btn.disabled) 
+                                    .map(btn => btn.textContent);
 
-    const availableOptions = question.options.filter(opt => visibleOptions.includes(opt));
-    
-    // Ha a helyes válasz benne van az elérhető opciókban
-    if (availableOptions.includes(question.correctAnswer)) {
-        results[question.correctAnswer] = correctPercentage;
-        totalPercentage -= correctPercentage;
-    } else {
-        // Ha a helyes válasz már nincs az elérhető opciókban (pl. 50:50 kivette)
-        correctPercentage = 0; // Ebben az esetben a helyes válaszra adott százalék 0
-    }
-
-    const wrongOptions = availableOptions.filter(opt => opt !== question.correctAnswer);
-    let remainingOptionsCount = wrongOptions.length;
-
-    // Elosztja a maradék százalékot a rossz válaszok között
-    wrongOptions.forEach((option, index) => {
-        if (index < remainingOptionsCount - 1) {
-            let allocated = Math.floor(Math.random() * (totalPercentage / remainingOptionsCount * 1.5 - 5)) + 5; 
-            allocated = Math.min(allocated, totalPercentage); 
-            results[option] = allocated;
-            totalPercentage -= allocated;
+        const availableOptions = question.options.filter(opt => visibleOptions.includes(opt));
+        
+        if (availableOptions.includes(question.correctAnswer)) {
+            results[question.correctAnswer] = correctPercentage;
+            totalPercentage -= correctPercentage;
         } else {
-            results[option] = Math.max(0, totalPercentage); // Utolsó elem kapja a maradékot, de minimum 0
+            correctPercentage = 0; 
         }
-    });
 
-    // Biztosítja, hogy az összesített százalék pontosan 100 legyen (kerekítési hibák miatt)
-    const currentSum = Object.values(results).reduce((a, b) => a + b, 0);
-    if (currentSum !== 100 && currentSum > 0) { // Csak akkor normalizál, ha a sum nem nulla és nem 100
-        const adjustmentFactor = 100 / currentSum;
-        for (const key in results) {
-            results[key] = Math.round(results[key] * adjustmentFactor);
+        const wrongOptions = availableOptions.filter(opt => opt !== question.correctAnswer);
+        let remainingOptionsCount = wrongOptions.length;
+
+        wrongOptions.forEach((option, index) => {
+            if (index < remainingOptionsCount - 1) {
+                let allocated = Math.floor(Math.random() * (totalPercentage / remainingOptionsCount * 1.5 - 5)) + 5; 
+                allocated = Math.min(allocated, totalPercentage); 
+                results[option] = allocated;
+                totalPercentage -= allocated;
+            } else {
+                results[option] = Math.max(0, totalPercentage); 
+            }
+        });
+
+        const currentSum = Object.values(results).reduce((a, b) => a + b, 0);
+        if (currentSum !== 100 && currentSum > 0) { 
+            const adjustmentFactor = 100 / currentSum;
+            for (const key in results) {
+                results[key] = Math.round(results[key] * adjustmentFactor);
+            }
         }
+        
+        let pollMessage = "<strong>Közönségszavazás eredménye:</strong><br>";
+        availableOptions.forEach(option => {
+            const percentage = results[option] || 0;
+            pollMessage += `${option}: <strong>${percentage}%</strong><br>`;
+        });
+        
+        showModal('Közönségszavazás', pollMessage, false); 
     }
-    
-    // Most itt generáljuk a szöveges kimenetet
-    let pollMessage = "<strong>Közönségszavazás eredménye:</strong><br>";
-    availableOptions.forEach(option => {
-        const percentage = results[option] || 0;
-        pollMessage += `${option}: <strong>${percentage}%</strong><br>`;
-    });
-    
-    showModal('Közönségszavazás', pollMessage, false); // false, mert nem diagram
-}
 
-/**
- * Megjeleníti a modális ablakot.
- * @param {string} title - A modális ablak címe.
- * @param {string} content - A modális ablak tartalma (szöveg).
- * @param {boolean} showChart - Igaz, ha a közönségszavazás diagramot is mutatni kell. (Most már mindig false lesz)
- */
-function showModal(title, content, showChart = false) {
-    modalTitle.textContent = title;
-    // Mindig csak a szöveges tartalmat mutatjuk, a diagramot elrejtjük
-    modalContent.style.display = 'block';
-    audienceChart.style.display = 'none';
-    modalContent.innerHTML = content; // Ezt közvetlenül beállítjuk
-    audienceChart.innerHTML = ''; // Biztos, ami biztos, töröljük a diagram tartalmát
-    
-    overlay.classList.add('active');
-}
-
-/**
- * Bezárja a modális ablakot.
- */
-function closeModal() {
-    overlay.classList.remove('active');
-}
-
-/**
-     * Megjeleníti a közönségszavazás diagramot.
-     * @param {string[]} options - A kérdés aktuálisan látható válaszlehetőségei.
-     * @param {Object.<string, number>} results - A válaszlehetőségekhez tartozó százalékok.
+    /**
+     * Megjeleníti a modális ablakot.
      */
-  
-    // ... (a shuffleArray függvény változatlan)
+    function showModal(title, content, showChart = false) {
+        modalTitle.textContent = title;
+        modalContent.style.display = 'block';
+        audienceChart.style.display = 'none';
+        modalContent.innerHTML = content; 
+        audienceChart.innerHTML = ''; 
+        
+        overlay.classList.add('active');
+    }
+
+    /**
+     * Bezárja a modális ablakot.
+     */
+    function closeModal() {
+        overlay.classList.remove('active');
+    }
 
     // --- Segéd függvények ---
 
     /**
      * Keveri a tömb elemeit (Fisher-Yates shuffle algoritmus).
-     * @param {Array} array - A keverendő tömb.
-     * @returns {Array} - A megkevert tömb.
      */
     function shuffleArray(array) {
         for (let i = array.length - 1; i > 0; i--) {
