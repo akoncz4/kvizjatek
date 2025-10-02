@@ -378,32 +378,7 @@ function closeModal() {
      * @param {string[]} options - A kérdés aktuálisan látható válaszlehetőségei.
      * @param {Object.<string, number>} results - A válaszlehetőségekhez tartozó százalékok.
      */
-    function displayAudienceChart(options, results) {
-        audienceChart.innerHTML = ''; // Törli az előző oszlopokat
-        options.forEach(option => {
-            const percentage = results[option] || 0;
-            const barContainer = document.createElement('div');
-            barContainer.classList.add('audience-bar-container');
-
-            const bar = document.createElement('div');
-            bar.classList.add('audience-bar');
-            bar.style.height = `${percentage}%`;
-            
-            const percentageSpan = document.createElement('span');
-            percentageSpan.classList.add('audience-bar-percentage');
-            percentageSpan.textContent = `${percentage}%`;
-            barContainer.appendChild(percentageSpan); // A konténerbe tesszük, a bar FÖLÉ
-
-            const label = document.createElement('div');
-            label.classList.add('label');
-            label.textContent = option;
-
-            barContainer.appendChild(bar); // A bar most a percentage span UTÁN jön
-            barContainer.appendChild(label);
-            audienceChart.appendChild(barContainer);
-        });
-    }
-
+  
     // ... (a shuffleArray függvény változatlan)
 
     // --- Segéd függvények ---
