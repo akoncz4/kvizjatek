@@ -357,12 +357,14 @@ button:disabled {
 
 
 .result-image {
-    max-width: 20%; /* Kisebb képek */
-    height: 20%;
-    margin: 20px auto; /* Középre igazítás és térköz */
+    max-width: 300px; /* ÚJ: Rögzített maximális szélesség, hogy beleférjen */
+    max-height: 200px; /* ÚJ: Maximális magasság beállítása, hogy ne nyúljon túl nagyra */
+    width: 100%; /* Ez biztosítja, hogy kisebb képernyőn is a rendelkezésre álló helyet használja ki, de max 300px */
+    height: auto; /* Tartja az arányokat, hogy a kép ne torzuljon el */
+    margin: 15px auto; /* Középre igazítás és kisebb térköz */
     border-radius: var(--border-radius);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-    display: block; /* Hogy a margin auto működjön */
+    display: block; 
 }
 
 .result-image.hidden {
@@ -371,3 +373,4 @@ button:disabled {
 
 
 }
+
