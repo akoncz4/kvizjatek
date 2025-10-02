@@ -266,8 +266,8 @@ document.addEventListener('DOMContentLoaded', () => {
             imageToDisplay.src = imageFileName;
             
             imageToDisplay.onload = () => {
-                imageToDisplay.style.maxWidth = '200px'; 
-                imageToDisplay.style.maxHeight = '150px'; 
+                imageToDisplay.style.maxWidth = '300px'; 
+                imageToDisplay.style.maxHeight = '250px'; 
                 imageToDisplay.style.width = 'auto'; 
                 imageToDisplay.style.height = 'auto';
 
@@ -477,4 +477,5 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         return array;
     }
+
 });
