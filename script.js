@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const phoneBtn = document.getElementById('phone-btn');
     const audienceBtn = document.getElementById('audience-btn');
 
-    // ÚJ: Képelemek lekérdezése
+    // Képelemek lekérdezése az index.html-ből
     const winImage = document.getElementById('win-image');
     const loseImage = document.getElementById('lose-image');
 
@@ -53,10 +53,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Eseményfigyelők
     difficultyButtons.forEach(button => {
-        button.addEventListener('click', () => startGame(button.dataset.difficulty));
+        button.addEventListener('click', () => {
+            if (Object.keys(allQuestions).length > 0) {
+                startGame(button.dataset.difficulty);
+            } else {
+                alert("A kérdések még betöltés alatt vannak, vagy hiba történt. Kérem várjon!");
+            }
+        });
     });
 
-    restartButton.addEventListener('click', resetGame);
+    restartButton.addEventListener('click', () => {
+        location.reload(); // Teljes oldal újratöltés
+    });
     backToMenuBtn.addEventListener('click', resetGame); 
     closeModalBtn.addEventListener('click', closeModal);
 
@@ -104,7 +112,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-
     /**
      * Megjelenít egy adott képernyőt, elrejtve a többit.
      */
@@ -121,32 +128,28 @@ document.addEventListener('DOMContentLoaded', () => {
     function startGame(difficulty) {
         selectedDifficulty = difficulty;
         
-        // Összegyűjti és megkeveri az összes elérhető kérdést
         const availableQuestions = shuffleArray([...allQuestions[difficulty]]); 
-        
-        // Csak az első MAX_QUESTIONS (20) kérdést veszi be.
         currentQuestions = availableQuestions.slice(0, MAX_QUESTIONS); 
 
         currentQuestionIndex = 0;
         score = 0;
         correctAnswers = 0;
-        lives = STARTING_LIVES; // Életek visszaállítása
+        lives = STARTING_LIVES; 
         
-        // Segítők alaphelyzetbe állítása
         fiftyFiftyUsed = false;
         phoneUsed = false;
         audienceUsed = false;
         updateHelpButtonStates();
-        updateLifeDisplay(); // Életek kijelzőjének frissítése
+        updateLifeDisplay(); 
 
         scoreDisplay.textContent = score;
-        totalQuestionsCountDisplay.textContent = currentQuestions.length; // Max 20 lesz
+        totalQuestionsCountDisplay.textContent = currentQuestions.length; 
         
-        // ÚJ: Képek elrejtése a játék indításakor
+        // Képek elrejtése a játék indításakor
         winImage.classList.add('hidden');
         loseImage.classList.add('hidden');
-        winImage.src = ''; // Üresre állítjuk
-        loseImage.src = ''; // Üresre állítjuk
+        winImage.src = ''; 
+        loseImage.src = ''; 
 
         showScreen(quizScreen);
         displayQuestion();
@@ -156,13 +159,12 @@ document.addEventListener('DOMContentLoaded', () => {
      * Megjeleníti az aktuális kérdést és válaszlehetőségeket.
      */
     function displayQuestion() {
-        // Ellenőrzi, hogy van-e még hátra kérdés, vagy él
         if (currentQuestionIndex >= currentQuestions.length) {
-            endGame(true); // Játék vége - Nyert (minden kérdésre válaszolt)
+            endGame(true); 
             return;
         }
         if (lives <= 0) {
-            endGame(false); // Játék vége - Elfogytak az életek
+            endGame(false); 
             return;
         }
         
@@ -211,16 +213,14 @@ document.addEventListener('DOMContentLoaded', () => {
             score += 10;
             correctAnswers++;
         } else {
-            // Helytelen válasz esetén csökkenti az életeket
             lives--;
             updateLifeDisplay();
         }
         scoreDisplay.textContent = score;
 
         setTimeout(() => {
-            // Mielőtt tovább lépnénk, újra ellenőrizzük az életeket és a kérdéseket.
             if (lives <= 0 || currentQuestionIndex + 1 >= currentQuestions.length) {
-                 endGame(lives > 0); // Játék vége
+                 endGame(lives > 0); 
             } else {
                 currentQuestionIndex++;
                 displayQuestion(); 
@@ -235,34 +235,75 @@ document.addEventListener('DOMContentLoaded', () => {
     function endGame(hasWon) {
         const titleElement = resultScreen.querySelector('h2');
         
-        // ÚJ: Képek elrejtése minden játék végén
+        // Képek elrejtése minden játék végén
         winImage.classList.add('hidden');
         loseImage.classList.add('hidden');
+        winImage.src = ''; 
+        loseImage.src = '';
+
+        let imageToDisplay;
+        let imageFileName;
 
         if (lives <= 0) {
             titleElement.textContent = "Sajnáljuk! Elfogytak az életeid. Tanár úr csalódott benned!";
-            // ÚJ: Vereség kép megjelenítése
-            loseImage.src = 'lose.png'; // Itt add meg a vesztés kép fájl nevét (pl. lose.png)
-            loseImage.classList.remove('hidden');
+            imageToDisplay = loseImage;
+            imageFileName = 'lose.png';
         } else if (hasWon) {
-            titleElement.textContent = "Gratulálunk! Tanár úr büszke rád!";
-            // ÚJ: Győzelem kép megjelenítése
-            winImage.src = 'win.png'; // Itt add meg a győzelem kép fájl nevét (pl. win.png)
-            winImage.classList.remove('hidden');
+            titleElement.textContent = "Gratulálunk! Befejezted a kvízt! Tanár úr büszke rád!";
+            imageToDisplay = winImage;
+            imageFileName = 'win.png';
         } else {
-            // Ez a kódág valószínűleg nem fut le a jelenlegi logikával, de biztonsági okokból maradhat.
             titleElement.textContent = "Játék vége!";
+            showScreen(resultScreen);
+            return; 
         }
         
         finalScoreDisplay.textContent = score;
         correctAnswersCountDisplay.textContent = correctAnswers;
-        showScreen(resultScreen);
+
+        // A kép betöltésének aszinkron kezelése és méretkorlátozás kényszerítése
+        if (imageToDisplay && imageFileName) {
+            imageToDisplay.src = imageFileName;
+            
+            imageToDisplay.onload = () => {
+                imageToDisplay.style.maxWidth = '200px'; 
+                imageToDisplay.style.maxHeight = '150px'; 
+                imageToDisplay.style.width = 'auto'; 
+                imageToDisplay.style.height = 'auto';
+
+                imageToDisplay.classList.remove('hidden'); 
+                showScreen(resultScreen); 
+            };
+            
+            imageToDisplay.onerror = () => {
+                console.error(`Hiba a kép betöltésekor: ${imageFileName}`);
+                imageToDisplay.classList.add('hidden'); 
+                showScreen(resultScreen); 
+            };
+
+        } else {
+            showScreen(resultScreen);
+        }
     }
 
     /**
      * Visszaállítja a játékot a kezdeti állapotba.
      */
     function resetGame() {
+        // Képek elrejtése és törlése
+        winImage.classList.add('hidden');
+        loseImage.classList.add('hidden');
+        winImage.src = '';
+        loseImage.src = '';
+        
+        // Cím visszaállítása
+        const titleElement = resultScreen.querySelector('h2');
+        titleElement.textContent = "Játék vége!";
+        
+        // Pontszámok és értékek visszaállítása
+        finalScoreDisplay.textContent = '0';
+        correctAnswersCountDisplay.textContent = '0';
+        
         showScreen(difficultySelectionScreen);
     }
 
@@ -284,12 +325,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const heartIcon = document.createElement('i');
             heartIcon.classList.add('fas', 'fa-heart');
             if (i >= lives) {
-                heartIcon.classList.add('lost'); // Elvesztett élet szürke
+                heartIcon.classList.add('lost');
             }
             lifeDisplay.appendChild(heartIcon);
         }
     }
-
 
     // --- Segítő funkciók ---
 
@@ -330,7 +370,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let tip = '';
         const randomNumber = Math.random(); 
 
-        let correctChance = 0.7; // Alap 70%
+        let correctChance = 0.7;
         if (selectedDifficulty === 'easy') correctChance = 0.9;
         if (selectedDifficulty === 'hard') correctChance = 0.5;
 
