@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Szuper Kvízjáték</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1 id="game-title">Szuper Kvízjáték</h1>
+
+        <!-- Nehézségi fokozat választó képernyő -->
+        <div id="difficulty-selection" class="screen active">
+            <h2>Válassz nehézségi fokozatot:</h2>
+            <div class="difficulty-buttons">
+                <button class="difficulty-btn" data-difficulty="easy">Könnyű</button>
+                <button class="difficulty-btn" data-difficulty="medium">Közepes</button>
+                <button class="difficulty-btn" data-difficulty="hard">Nehéz</button>
+            </div>
+        </div>
+
+        <!-- Kvíz játék képernyő -->
+        <div id="quiz-screen" class="screen">
+            <p class="question-counter">Kérdés: <span id="current-question-number">1</span> / <span id="total-questions-count">0</span></p>
+            <h3 id="question-text">Itt jelenik meg a kérdés.</h3>
+            <div id="answer-buttons" class="btn-grid">
+                <!-- A válasz gombok JavaScripttel generálódnak ide -->
+            </div>
+            <div class="help-options">
+                <button id="fifty-fifty-btn" class="help-btn" title="Két rossz válasz eltávolítása">50:50</button>
+                <button id="phone-btn" class="help-btn" title="Telefonos segítség">Telefon</button>
+                <button id="audience-btn" class="help-btn" title="Közönségszavazás">Közönség</button>
+            </div>
+            <p class="score-display">Pontszám: <span id="score">0</span></p>
+        </div>
+
+        <!-- Eredmény képernyő -->
+        <div id="result-screen" class="screen">
+            <h2>Játék vége!</h2>
+            <p>Elért pontszám: <span id="final-score">0</span></p>
+            <p>Helyes válaszok: <span id="correct-answers-count">0</span></p>
+            <button id="restart-btn">Újra játszik</button>
+        </div>
+
+        <!-- Pop-up a telefonos segítséghez / közönségszavazáshoz -->
+        <div id="overlay" class="overlay">
+            <div id="modal" class="modal">
+                <h3 id="modal-title"></h3>
+                <p id="modal-content"></p>
+                <div id="audience-chart" class="audience-chart">
+                    <!-- Szavazási oszlopok ide jönnek -->
+                </div>
+                <button id="close-modal-btn">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
